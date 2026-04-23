@@ -1,26 +1,173 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: 255 255 255;
+  --foreground: 44 62 80;
+
+  --card: 255 255 255;
+  --card-foreground: 44 62 80;
+
+  --popover: 255 255 255;
+  --popover-foreground: 44 62 80;
+
+  --primary: 22 71 163;
+  --primary-foreground: 248 250 252;
+
+  --secondary: 235 239 244;
+  --secondary-foreground: 44 62 80;
+
+  --muted: 245 247 250;
+  --muted-foreground: 113 125 126;
+
+  --accent: 20 143 119;
+  --accent-foreground: 255 255 255;
+
+  --destructive: 192 57 43;
+  --destructive-foreground: 255 255 255;
+
+  --border: 210 218 227;
+  --input: 210 218 227;
+  --ring: 22 71 163;
+
+  --surface: 255 255 255;
+  --surface-raised: 250 251 253;
+  --bg: 255 255 255;
+  --bg-subtle: 245 247 250;
+  --bg-muted: 235 239 244;
+  --text-primary: 44 62 80;
+  --text-secondary: 113 125 126;
+  --text-disabled: 174 182 188;
+  --success: 30 132 73;
+  --warning: 212 119 26;
+  --danger: 192 57 43;
+
+  --radius: 0.75rem;
+}
+
+.dark {
+  --background: 15 20 30;
+  --foreground: 220 230 240;
+
+  --card: 22 30 44;
+  --card-foreground: 220 230 240;
+
+  --popover: 22 30 44;
+  --popover-foreground: 220 230 240;
+
+  --primary: 94 163 255;
+  --primary-foreground: 15 20 30;
+
+  --secondary: 30 42 58;
+  --secondary-foreground: 220 230 240;
+
+  --muted: 22 30 44;
+  --muted-foreground: 140 155 170;
+
+  --accent: 20 143 119;
+  --accent-foreground: 255 255 255;
+
+  --destructive: 220 38 38;
+  --destructive-foreground: 255 255 255;
+
+  --border: 45 60 80;
+  --input: 45 60 80;
+  --ring: 94 163 255;
+
+  --surface: 22 30 44;
+  --surface-raised: 30 42 58;
+  --bg: 15 20 30;
+  --bg-subtle: 22 30 44;
+  --bg-muted: 30 42 58;
+  --text-primary: 220 230 240;
+  --text-secondary: 140 155 170;
+  --text-disabled: 80 95 110;
+  --success: 74 222 128;
+  --warning: 251 191 36;
+  --danger: 248 113 113;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+
+  --color-background: rgb(var(--background));
+  --color-foreground: rgb(var(--foreground));
+
+  --color-card: rgb(var(--card));
+  --color-card-foreground: rgb(var(--card-foreground));
+
+  --color-popover: rgb(var(--popover));
+  --color-popover-foreground: rgb(var(--popover-foreground));
+
+  --color-primary: rgb(var(--primary));
+  --color-primary-foreground: rgb(var(--primary-foreground));
+
+  --color-secondary: rgb(var(--secondary));
+  --color-secondary-foreground: rgb(var(--secondary-foreground));
+
+  --color-muted: rgb(var(--muted));
+  --color-muted-foreground: rgb(var(--muted-foreground));
+
+  --color-accent: rgb(var(--accent));
+  --color-accent-foreground: rgb(var(--accent-foreground));
+
+  --color-destructive: rgb(var(--destructive));
+  --color-destructive-foreground: rgb(var(--destructive-foreground));
+
+  --color-border: rgb(var(--border));
+  --color-input: rgb(var(--input));
+  --color-ring: rgb(var(--ring));
+
+  --color-surface: rgb(var(--surface));
+  --color-surface-raised: rgb(var(--surface-raised));
+  --color-bg: rgb(var(--bg));
+  --color-bg-subtle: rgb(var(--bg-subtle));
+  --color-bg-muted: rgb(var(--bg-muted));
+  --color-text-primary: rgb(var(--text-primary));
+  --color-text-secondary: rgb(var(--text-secondary));
+  --color-text-disabled: rgb(var(--text-disabled));
+  --color-success: rgb(var(--success));
+  --color-warning: rgb(var(--warning));
+  --color-danger: rgb(var(--danger));
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  --breakpoint-tablet: 48rem;
+  --breakpoint-desktop: 80rem;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  * {
+    @apply border-border;
   }
-}
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  html,
+  body {
+    min-height: 100%;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+
+  html[dir="rtl"] {
+    text-align: right;
+  }
+
+  html[dir="ltr"] {
+    text-align: left;
+  }
+
+  button,
+  a,
+  input,
+  select,
+  textarea {
+    min-height: 2.75rem;
+  }
 }
