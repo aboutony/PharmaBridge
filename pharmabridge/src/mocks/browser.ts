@@ -5,6 +5,7 @@ import { distributorHandlers } from './handlers/apiHandlers'
 import { orderHandlers } from './handlers/apiHandlers'
 import { authHandlers } from './handlers/authHandlers'
 import { inventoryHandlers } from './handlers/inventoryHandlers'
+import { distributorOperationsHandlers } from './handlers/distributorOperationsHandlers'
 
 // Combine all handlers
 const handlers = [
@@ -14,6 +15,7 @@ const handlers = [
   ...orderHandlers,
   ...authHandlers,
   ...inventoryHandlers,
+  ...distributorOperationsHandlers,
 ]
 
 // Create the worker
