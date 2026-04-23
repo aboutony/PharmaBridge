@@ -1,11 +1,10 @@
-import { ThemeProvider } from "next-themes"
+import { ThemeProvider, type ThemeProviderProps } from "next-themes"
 
-interface ThemeProviderProps {
-  children: React.ReactNode
-  attribute?: string
-  defaultTheme?: string
-  enableSystem?: boolean
-  disableTransitionOnChange?: boolean
+export function ThemeProviderWrapper({
+  children,
+  ...props
+}: ThemeProviderProps) {
+  return <ThemeProvider {...props}>{children}</ThemeProvider>
 }
 
 export function ThemeProviderWrapper({
