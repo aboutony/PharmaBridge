@@ -1,10 +1,12 @@
-import { useTranslations } from 'next-intl'
+'use client'
+
 import { ThemeToggle } from "@/components/ui/theme-toggle"
 import { LanguageToggle } from "@/components/ui/language-toggle"
-import { DirectionalChevron } from "@/components/ui/directional-chevron"
+import { useMSW } from "@/hooks/useMSW"
 
 export default function Home() {
-  const t = useTranslations('common')
+  // Initialize MSW in development
+  useMSW()
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-8">
@@ -15,9 +17,8 @@ export default function Home() {
           <ThemeToggle />
           <LanguageToggle />
         </div>
-        <div className="flex items-center gap-2">
-          <span>{t('save')}</span>
-          <DirectionalChevron className="w-4 h-4" />
+        <div className="text-sm text-text-secondary">
+          MSW is active in development - check network tab for mocked API calls
         </div>
       </div>
     </main>
