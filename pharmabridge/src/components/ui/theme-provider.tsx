@@ -6,10 +6,3 @@ export function ThemeProviderWrapper({
 }: ThemeProviderProps) {
   return <ThemeProvider {...props}>{children}</ThemeProvider>
 }
-
-export function ThemeProviderWrapper({
-  children,
-  ...props
-}: ThemeProviderProps) {
-  return <ThemeProvider {...props}>{children}</ThemeProvider>
-}
