@@ -1,0 +1,22 @@
+@layer base {
+  html[dir="rtl"] {
+    /* RTL-specific adjustments */
+    text-align: right;
+  }
+
+  html[dir="ltr"] {
+    text-align: left;
+  }
+}
+
+@layer components {
+  /* Logical properties for RTL/LTR */
+  .direction-aware {
+    padding-inline-start: 1rem;
+    padding-inline-end: 1rem;
+    margin-inline-start: 0.5rem;
+    margin-inline-end: 0.5rem;
+    border-inline-start-width: 2px;
+    border-inline-end-width: 0;
+  }
+}

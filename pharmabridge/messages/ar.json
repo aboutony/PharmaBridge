@@ -1,0 +1,28 @@
+{
+  "common": {
+    "save": "حفظ",
+    "cancel": "إلغاء",
+    "search": "بحث",
+    "loading": "جارٍ التحميل...",
+    "error": "حدث خطأ",
+    "success": "نجح"
+  },
+  "navigation": {
+    "dashboard": "لوحة التحكم",
+    "inventory": "المخزون",
+    "sourcing": "التوريد",
+    "marketplace": "السوق",
+    "analytics": "التحليلات",
+    "settings": "الإعدادات"
+  },
+  "auth": {
+    "login": "تسجيل الدخول",
+    "register": "إنشاء حساب",
+    "resetPassword": "إعادة تعيين كلمة المرور",
+    "email": "البريد الإلكتروني",
+    "password": "كلمة المرور",
+    "confirmPassword": "تأكيد كلمة المرور",
+    "rememberMe": "تذكرني",
+    "forgotPassword": "نسيت كلمة المرور؟"
+  }
+}
