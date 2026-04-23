@@ -1,22 +1,14 @@
 'use client'
 
 import { useState } from 'react'
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
-import { Plus, Eye, Clock, CheckCircle, Truck, XCircle } from 'lucide-react'
+import { useQuery } from '@tanstack/react-query'
+import { Plus, Eye, Clock, CheckCircle, Truck, XCircle, Package } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
 import { DistributorSearch } from './distributor-search'
 import { LiveInventory } from './live-inventory'
-
-interface OrderItem {
-  id: string
-  name: string
-  quantity: number
-  price: number
-  total: number
-}
 
 interface Order {
   id: string
@@ -27,32 +19,20 @@ interface Order {
   itemsCount: number
 }
 
+interface DistributorSummary {
+  id: string
+  name: string
+}
+
 export function DistributorLink() {
-  const [selectedDistributor, setSelectedDistributor] = useState<any>(null)
+  const [selectedDistributor, setSelectedDistributor] = useState<DistributorSummary | null>(null)
   const [showInventory, setShowInventory] = useState(false)
-  const queryClient = useQueryClient()
 
   const { data: orders, isLoading: ordersLoading } = useQuery({
     queryKey: ['pharmacy-orders'],
     queryFn: async () => {
       const response = await fetch('/api/pharmacies/1/orders')
       return response.json()
-    },
-  })
-
-  const placeOrderMutation = useMutation({
-    mutationFn: async (orderData: any) => {
-      const response = await fetch('/api/orders', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(orderData),
-      })
-      return response.json()
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['pharmacy-orders'] })
-      setSelectedDistributor(null)
-      setShowInventory(false)
     },
   })
 

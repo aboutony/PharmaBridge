@@ -31,26 +31,30 @@ export function DrugAvailabilitySearch() {
   const [searchQuery, setSearchQuery] = useState('')
   const [location, setLocation] = useState('')
   const [maxPrice, setMaxPrice] = useState('')
-  const [selectedPharmacy, setSelectedPharmacy] = useState<DrugSearchResult | null>(null)
+  const [submittedQuery, setSubmittedQuery] = useState('')
+  const [submittedLocation, setSubmittedLocation] = useState('')
+  const [submittedMaxPrice, setSubmittedMaxPrice] = useState('')
 
   const { data: searchResults, isLoading } = useQuery({
-    queryKey: ['drug-search', searchQuery, location, maxPrice],
+    queryKey: ['drug-search', submittedQuery, submittedLocation, submittedMaxPrice],
     queryFn: async () => {
-      if (!searchQuery.trim()) return []
+      if (!submittedQuery.trim()) return []
 
       const params = new URLSearchParams()
-      params.append('drug', searchQuery)
-      if (location) params.append('location', location)
-      if (maxPrice) params.append('maxPrice', maxPrice)
+      params.append('drug', submittedQuery)
+      if (submittedLocation) params.append('location', submittedLocation)
+      if (submittedMaxPrice) params.append('maxPrice', submittedMaxPrice)
 
       const response = await fetch(`/api/marketplace/search?${params}`)
       return response.json()
     },
-    enabled: !!searchQuery.trim(),
+    enabled: !!submittedQuery.trim(),
   })
 
   const handleSearch = () => {
-    // Trigger search by updating query key
+    setSubmittedQuery(searchQuery.trim())
+    setSubmittedLocation(location.trim())
+    setSubmittedMaxPrice(maxPrice.trim())
   }
 
   const renderStars = (rating: number) => {
@@ -230,7 +234,7 @@ export function DrugAvailabilitySearch() {
         </div>
       )}
 
-      {searchResults && searchResults.length === 0 && searchQuery && (
+      {searchResults && searchResults.length === 0 && submittedQuery && (
         <div className="text-center py-8">
           <Search className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
           <p className="text-muted-foreground">No medicines found matching your search.</p>

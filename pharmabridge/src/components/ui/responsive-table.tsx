@@ -1,15 +1,11 @@
 'use client'
 
-import { useState } from "react"
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
-
 interface ResponsiveTableProps<T> {
   data: T[]
   columns: Array<{
     key: keyof T
     label: string
-    render?: (value: any, item: T) => React.ReactNode
+    render?: (value: T[keyof T], item: T) => React.ReactNode
   }>
   mobileCardFields?: Array<{
     key: keyof T
@@ -17,7 +13,7 @@ interface ResponsiveTableProps<T> {
   }>
 }
 
-export function ResponsiveTable<T extends Record<string, any>>({
+export function ResponsiveTable<T extends object>({
   data,
   columns,
   mobileCardFields = []
@@ -39,11 +35,15 @@ export function ResponsiveTable<T extends Record<string, any>>({
           <tbody>
             {data.map((item, index) => (
               <tr key={index} className="border-b border-border">
-                {columns.map((col) => (
+                {columns.map((col) => {
+                  const record = item as Record<string, unknown>
+
+                  return (
                   <td key={col.key as string} className="border border-border p-3">
-                    {col.render ? col.render(item[col.key], item) : item[col.key]}
+                    {col.render ? col.render(record[col.key as string] as T[keyof T], item) : String(record[col.key as string] ?? '')}
                   </td>
-                ))}
+                  )
+                })}
               </tr>
             ))}
           </tbody>
@@ -54,12 +54,16 @@ export function ResponsiveTable<T extends Record<string, any>>({
       <div className="tablet:hidden space-y-4">
         {data.map((item, index) => (
           <div key={index} className="bg-surface border border-border rounded-lg p-4">
-            {mobileCardFields.map((field) => (
+            {mobileCardFields.map((field) => {
+              const record = item as Record<string, unknown>
+
+              return (
               <div key={field.key as string} className="flex justify-between py-2">
                 <span className="font-medium">{field.label}:</span>
-                <span>{item[field.key]}</span>
+                <span>{String(record[field.key as string] ?? '')}</span>
               </div>
-            ))}
+              )
+            })}
           </div>
         ))}
       </div>

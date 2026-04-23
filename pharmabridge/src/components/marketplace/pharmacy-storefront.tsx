@@ -1,8 +1,7 @@
 'use client'
 
-import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
-import { Star, MapPin, Phone, Mail, Clock, Truck, ShoppingCart } from 'lucide-react'
+import { Star, MapPin, Phone, Mail, Clock, ShoppingCart } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -40,7 +39,7 @@ interface PharmacyStorefrontProps {
 }
 
 export function PharmacyStorefront({ pharmacyId }: PharmacyStorefrontProps) {
-  const { data: pharmacy, isLoading } = useQuery({
+  const { data: pharmacy, isLoading } = useQuery<PharmacyDetails>({
     queryKey: ['pharmacy-details', pharmacyId],
     queryFn: async () => {
       const response = await fetch(`/api/marketplace/pharmacies/${pharmacyId}`)
@@ -207,7 +206,6 @@ export function PharmacyStorefront({ pharmacyId }: PharmacyStorefrontProps) {
           <Card>
             <CardHeader>
               <CardTitle>Additional Information</CardTitle>
-            </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               <div>

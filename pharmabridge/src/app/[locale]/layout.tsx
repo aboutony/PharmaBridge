@@ -1,5 +1,7 @@
-import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
+import { notFound } from 'next/navigation'
+import { QueryProvider } from '@/components/ui/query-provider'
+import { LocaleProvider } from '@/lib/i18n'
 import { ThemeProviderWrapper } from '@/components/ui/theme-provider'
 
 const geistSans = Geist({
@@ -11,6 +13,10 @@ const geistMono = Geist_Mono({
   variable: '--font-geist-mono',
   subsets: ['latin'],
 })
+
+export function generateStaticParams() {
+  return [{ locale: 'ar' }, { locale: 'en' }]
+}
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
@@ -29,25 +35,32 @@ export default async function LocaleLayout({
   params: Promise<{ locale: string }>
 }) {
   const { locale } = await params
+  const locales = ['ar', 'en']
+
+  if (!locales.includes(locale)) {
+    notFound()
+  }
+
+  const messages = (await import(`../../../messages/${locale}.json`)).default
 
   return (
-    <html
+    <div
       lang={locale}
       dir={locale === 'ar' ? 'rtl' : 'ltr'}
-      suppressHydrationWarning
+      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
-        <ThemeProviderWrapper
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
+      <ThemeProviderWrapper
+        attribute="class"
+        defaultTheme="system"
+        enableSystem
+        disableTransitionOnChange
+      >
+        <LocaleProvider locale={locale} messages={messages}>
           <QueryProvider>
             {children}
           </QueryProvider>
-        </ThemeProviderWrapper>
-      </body>
-    </html>
+        </LocaleProvider>
+      </ThemeProviderWrapper>
+    </div>
   )
 }

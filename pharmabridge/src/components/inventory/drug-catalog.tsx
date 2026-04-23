@@ -8,7 +8,7 @@ import { Input } from '@/components/ui/input'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { ResponsiveTable } from '@/components/ui/responsive-table'
-import { BarcodeScanner, useBarcodeScanner } from './barcode-scanner'
+import { BarcodeScanner } from './barcode-scanner'
 
 interface InventoryItem {
   id: string
@@ -25,9 +25,10 @@ export function DrugCatalog() {
   const [searchTerm, setSearchTerm] = useState('')
   const [selectedCategory, setSelectedCategory] = useState('')
   const [showScanner, setShowScanner] = useState(false)
-  const { scannedCode, error, handleScan, handleError, reset } = useBarcodeScanner()
+  const [scannedCode, setScannedCode] = useState<string | null>(null)
+  const [scannerError, setScannerError] = useState<string | null>(null)
 
-  const { data: inventory, isLoading } = useQuery({
+  const { data: inventory, isLoading } = useQuery<InventoryItem[]>({
     queryKey: ['inventory', searchTerm, selectedCategory],
     queryFn: async () => {
       const params = new URLSearchParams()
@@ -39,16 +40,19 @@ export function DrugCatalog() {
     },
   })
 
-  // Handle barcode scan
-  useState(() => {
-    if (scannedCode) {
-      setSearchTerm(scannedCode)
-      setShowScanner(false)
-      reset()
-    }
-  })
-
   const categories = ['All', 'Pain Relief', 'Antibiotics', 'Vitamins', 'Cardiovascular', 'Respiratory']
+
+  const handleBarcodeScan = (result: string) => {
+    setScannedCode(result)
+    setScannerError(null)
+    setSearchTerm(result)
+    setShowScanner(false)
+  }
+
+  const clearScanState = () => {
+    setScannedCode(null)
+    setScannerError(null)
+  }
 
   const getStockStatus = (item: InventoryItem) => {
     if (item.stock === 0) return { status: 'Out of Stock', variant: 'destructive' as const }
@@ -124,8 +128,8 @@ export function DrugCatalog() {
       {/* Barcode Scanner */}
       {showScanner && (
         <BarcodeScanner
-          onScan={handleScan}
-          onError={handleError}
+          onScan={handleBarcodeScan}
+          onError={setScannerError}
         />
       )}
 
@@ -138,10 +142,18 @@ export function DrugCatalog() {
                 <p className="font-medium text-success">Barcode scanned successfully!</p>
                 <p className="text-sm text-muted-foreground">Code: {scannedCode}</p>
               </div>
-              <Button onClick={reset} variant="outline" size="sm">
+              <Button onClick={clearScanState} variant="outline" size="sm">
                 Clear
               </Button>
             </div>
+          </CardContent>
+        </Card>
+      )}
+
+      {scannerError && (
+        <Card className="border-destructive">
+          <CardContent className="pt-6 text-sm text-destructive">
+            {scannerError}
           </CardContent>
         </Card>
       )}
@@ -158,7 +170,7 @@ export function DrugCatalog() {
           {isLoading ? (
             <div>Loading inventory...</div>
           ) : (
-            <ResponsiveTable
+            <ResponsiveTable<InventoryItem>
               data={inventory || []}
               columns={[
                 {
@@ -184,11 +196,15 @@ export function DrugCatalog() {
                 {
                   key: 'expiryDate',
                   label: 'Expiry',
-                  render: (value) => (
-                    <Badge variant={getExpiryStatus(value).variant} className="text-xs">
-                      {getExpiryStatus(value).status}
-                    </Badge>
-                  ),
+                  render: (value) => {
+                    const expiry = String(value)
+
+                    return (
+                      <Badge variant={getExpiryStatus(expiry).variant} className="text-xs">
+                        {getExpiryStatus(expiry).status}
+                      </Badge>
+                    )
+                  },
                 },
                 {
                   key: 'price',

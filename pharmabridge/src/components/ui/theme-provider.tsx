@@ -1,3 +1,5 @@
+'use client'
+
 import { ThemeProvider, type ThemeProviderProps } from "next-themes"
 
 export function ThemeProviderWrapper({

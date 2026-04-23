@@ -116,11 +116,14 @@ export const distributorOperationsHandlers = [
 
   // Create order
   http.post('/api/orders', async ({ request }) => {
-    const body = await request.json()
+    const body = await request.json() as Record<string, unknown>
 
     const newOrder = {
       id: String(Date.now()),
-      ...body,
+      pharmacyId: String(body.pharmacyId ?? ''),
+      distributorId: String(body.distributorId ?? ''),
+      items: Array.isArray(body.items) ? body.items : [],
+      total: Number(body.total ?? 0),
       status: 'pending',
       createdAt: new Date().toISOString(),
       estimatedDelivery: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toISOString()

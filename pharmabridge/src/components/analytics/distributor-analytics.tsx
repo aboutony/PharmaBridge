@@ -1,7 +1,7 @@
 'use client'
 
 import { useQuery } from '@tanstack/react-query'
-import { BarChart, Bar, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Area, AreaChart } from 'recharts'
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Area, AreaChart } from 'recharts'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -11,8 +11,47 @@ interface DistributorAnalyticsProps {
   distributorId: string
 }
 
+interface RevenueDatum {
+  date: string
+  revenue: number
+}
+
+interface PharmacyPerformanceItem {
+  pharmacy: string
+  orders: number
+  revenue: number
+  rating: number
+}
+
+interface ProductDemandItem {
+  product: string
+  demand: number
+  trend: 'increasing' | 'decreasing' | 'stable'
+  growth: number
+}
+
+interface RegionalPerformanceItem {
+  region: string
+  revenue: number
+  orders: number
+}
+
+interface DistributorAnalyticsData {
+  overview: {
+    totalRevenue: number
+    marketShare: number
+    totalOrders: number
+    averageOrderValue: number
+    activePharmacies: number
+  }
+  revenueData: RevenueDatum[]
+  pharmacyPerformance: PharmacyPerformanceItem[]
+  productDemand: ProductDemandItem[]
+  regionalPerformance: RegionalPerformanceItem[]
+}
+
 export function DistributorAnalytics({ distributorId }: DistributorAnalyticsProps) {
-  const { data: analytics, isLoading } = useQuery({
+  const { data: analytics, isLoading } = useQuery<DistributorAnalyticsData>({
     queryKey: ['distributor-analytics', distributorId],
     queryFn: async () => {
       const response = await fetch(`/api/analytics/distributor/${distributorId}`)
@@ -142,7 +181,7 @@ export function DistributorAnalytics({ distributorId }: DistributorAnalyticsProp
           </CardHeader>
           <CardContent>
             <div className="space-y-3">
-              {analytics.pharmacyPerformance.map((pharmacy: any, index: number) => (
+              {analytics.pharmacyPerformance.map((pharmacy, index: number) => (
                 <div key={pharmacy.pharmacy} className="flex items-center justify-between p-3 border rounded-lg">
                   <div className="flex items-center gap-3">
                     <Badge variant="outline">{index + 1}</Badge>
@@ -172,7 +211,7 @@ export function DistributorAnalytics({ distributorId }: DistributorAnalyticsProp
           </CardHeader>
           <CardContent>
             <div className="space-y-3">
-              {analytics.productDemand.map((product: any) => (
+              {analytics.productDemand.map((product) => (
                 <div key={product.product} className="flex items-center justify-between p-3 border rounded-lg">
                   <div className="flex-1">
                     <p className="font-medium">{product.product}</p>

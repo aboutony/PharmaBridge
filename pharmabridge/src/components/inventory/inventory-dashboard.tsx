@@ -5,9 +5,25 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge'
 import { AlertTriangle, Package, TrendingUp, DollarSign } from 'lucide-react'
 
+interface InventoryMetrics {
+  totalItems: number
+  totalValue: number
+  lowStockItems: number
+  expiringItems: number
+  categories: Record<string, number>
+}
+
+interface InventoryAlert {
+  id: string
+  severity: 'danger' | 'warning'
+  message: string
+  itemId: string
+  type: string
+}
+
 export function InventoryDashboard() {
   // Fetch inventory metrics
-  const { data: metrics, isLoading } = useQuery({
+  const { data: metrics, isLoading } = useQuery<InventoryMetrics>({
     queryKey: ['inventory-metrics'],
     queryFn: async () => {
       const response = await fetch('/api/inventory/metrics')
@@ -16,7 +32,7 @@ export function InventoryDashboard() {
   })
 
   // Fetch alerts
-  const { data: alerts } = useQuery({
+  const { data: alerts } = useQuery<InventoryAlert[]>({
     queryKey: ['inventory-alerts'],
     queryFn: async () => {
       const response = await fetch('/api/inventory/alerts')
@@ -93,7 +109,7 @@ export function InventoryDashboard() {
         </CardHeader>
         <CardContent>
           <div className="space-y-3">
-            {alerts?.map((alert: any) => (
+            {alerts?.map((alert) => (
               <div key={alert.id} className="flex items-center justify-between p-3 border rounded-lg">
                 <div className="flex items-center gap-3">
                   <AlertTriangle className={`h-5 w-5 ${

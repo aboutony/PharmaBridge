@@ -95,7 +95,7 @@ export const inventoryHandlers = [
   }),
 
   http.post('/api/inventory', async ({ request }) => {
-    const body = await request.json()
+    const body = await request.json() as Record<string, unknown>
     const newItem = {
       id: String(Date.now()),
       ...body,
@@ -105,7 +105,7 @@ export const inventoryHandlers = [
 
   http.put('/api/inventory/:id', async ({ request, params }) => {
     const { id } = params
-    const body = await request.json()
+    const body = await request.json() as Record<string, unknown>
     const updatedItem = {
       id,
       ...body,

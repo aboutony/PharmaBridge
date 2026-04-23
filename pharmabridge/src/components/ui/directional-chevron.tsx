@@ -1,6 +1,6 @@
 'use client'
 
-import { useLocale } from 'next-intl'
+import { useLocale } from '@/lib/i18n'
 import { ChevronRight } from 'lucide-react'
 import { cn } from '@/lib/utils'
 

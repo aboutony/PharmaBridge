@@ -2,11 +2,10 @@
 
 import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
-import { Eye, ShoppingCart, Package, AlertTriangle } from 'lucide-react'
+import { ShoppingCart, Package, AlertTriangle } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
 
 interface DistributorInventoryItem {
   id: string
@@ -33,7 +32,7 @@ interface LiveInventoryProps {
 }
 
 export function LiveInventory({ distributorId, distributorName }: LiveInventoryProps) {
-  const { data: inventory, isLoading } = useQuery({
+  const { data: inventory, isLoading } = useQuery<DistributorInventory>({
     queryKey: ['distributor-inventory', distributorId],
     queryFn: async () => {
       const response = await fetch(`/api/distributors/${distributorId}/inventory`)

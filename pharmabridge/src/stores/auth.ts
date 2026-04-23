@@ -1,4 +1,4 @@
-import create from 'zustand'
+import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 
 interface User {
@@ -18,21 +18,29 @@ interface AuthState {
   error: string | null
 
   login: (email: string, password: string, rememberMe: boolean) => Promise<void>
-  register: (data: any) => Promise<void>
+  register: (data: RegisterData) => Promise<void>
   logout: () => void
   clearError: () => void
 }
 
+interface RegisterData {
+  email: string
+  firstName: string
+  lastName: string
+  userType: User['userType']
+  phone?: string
+}
+
 export const useAuthStore = create<AuthState>()(
   persist(
-    (set, get) => ({
+    (set) => ({
       user: null,
       token: null,
       isAuthenticated: false,
       isLoading: false,
       error: null,
 
-      login: async (email: string, password: string, rememberMe: boolean) => {
+      login: async (email: string, _password: string, _rememberMe: boolean) => {
         set({ isLoading: true, error: null })
 
         try {
@@ -65,7 +73,7 @@ export const useAuthStore = create<AuthState>()(
         }
       },
 
-      register: async (data: any) => {
+      register: async (data: RegisterData) => {
         set({ isLoading: true, error: null })
 
         try {

@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import { useMutation } from '@tanstack/react-query'
-import { MapPin, Truck, Clock, CreditCard } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
@@ -23,7 +22,26 @@ interface OrderPlacementProps {
   pharmacyId: string
   pharmacyName: string
   items: OrderItem[]
-  onOrderComplete: (order: any) => void
+  onOrderComplete: (order: MarketplaceOrderResponse) => void
+}
+
+interface MarketplaceOrderRequest {
+  pharmacyId: string
+  pharmacyName: string
+  items: OrderItem[]
+  deliveryMethod: 'pickup' | 'delivery'
+  deliveryAddress: string | null
+  specialInstructions: string
+  subtotal: number
+  deliveryFee: number
+  tax: number
+  total: number
+  prescriptionUploaded: boolean
+}
+
+interface MarketplaceOrderResponse {
+  id: string
+  status: string
 }
 
 export function OrderPlacement({
@@ -45,7 +63,7 @@ export function OrderPlacement({
   const requiresPrescription = items.some(item => item.requiresPrescription)
 
   const placeOrderMutation = useMutation({
-    mutationFn: async (orderData: any) => {
+    mutationFn: async (orderData: MarketplaceOrderRequest) => {
       const response = await fetch('/api/marketplace/orders', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -199,7 +217,7 @@ export function OrderPlacement({
       {/* Prescription Upload */}
       {requiresPrescription && (
         <PrescriptionUpload
-          onUpload={(file) => setPrescriptionUploaded(true)}
+          onUpload={() => setPrescriptionUploaded(true)}
         />
       )}
 

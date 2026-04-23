@@ -1,5 +1,3 @@
-import { http, HttpResponse } from 'msw'
-
 // Mock data models
 export const mockData = {
   pharmacies: [

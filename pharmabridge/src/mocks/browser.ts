@@ -1,4 +1,4 @@
-import { setupWorker } from 'msw'
+import { setupWorker } from 'msw/browser'
 import { pharmacyHandlers } from './handlers/apiHandlers'
 import { drugHandlers } from './handlers/apiHandlers'
 import { distributorHandlers } from './handlers/apiHandlers'

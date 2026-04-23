@@ -1,20 +1,58 @@
 'use client'
 
 import { useQuery } from '@tanstack/react-query'
-import { LineChart, Line, BarChart, Bar, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts'
+import { LineChart, Line, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import { Download, TrendingUp, TrendingDown } from 'lucide-react'
+import { Download, TrendingUp } from 'lucide-react'
 
 interface PharmacyAnalyticsProps {
   pharmacyId: string
 }
 
+interface SalesDatum {
+  date: string
+  sales: number
+  orders: number
+}
+
+interface ProductPerformanceItem {
+  product: string
+  quantity: number
+  sales: number
+  percentage: number
+}
+
+interface CategoryBreakdownItem {
+  category: string
+  sales: number
+  percentage: number
+}
+
+interface PharmacyAnalyticsData {
+  overview: {
+    totalSales: number
+    growthRate: number
+    totalOrders: number
+    averageOrderValue: number
+    topProduct: string
+  }
+  salesData: SalesDatum[]
+  productPerformance: ProductPerformanceItem[]
+  categoryBreakdown: CategoryBreakdownItem[]
+  customerInsights: {
+    newCustomers: number
+    returningCustomers: number
+    averageCustomerValue: number
+    topCustomerSegments: string[]
+  }
+}
+
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884D8']
 
 export function PharmacyAnalytics({ pharmacyId }: PharmacyAnalyticsProps) {
-  const { data: analytics, isLoading } = useQuery({
+  const { data: analytics, isLoading } = useQuery<PharmacyAnalyticsData>({
     queryKey: ['pharmacy-analytics', pharmacyId],
     queryFn: async () => {
       const response = await fetch(`/api/analytics/pharmacy/${pharmacyId}`)
@@ -144,7 +182,7 @@ export function PharmacyAnalytics({ pharmacyId }: PharmacyAnalyticsProps) {
           </CardHeader>
           <CardContent>
             <div className="space-y-3">
-              {analytics.productPerformance.map((product: any, index: number) => (
+              {analytics.productPerformance.map((product, index: number) => (
                 <div key={product.product} className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
                     <Badge variant="outline">{index + 1}</Badge>
@@ -177,12 +215,15 @@ export function PharmacyAnalytics({ pharmacyId }: PharmacyAnalyticsProps) {
                   cx="50%"
                   cy="50%"
                   labelLine={false}
-                  label={({ category, percentage }) => `${category} ${percentage}%`}
+                  label={({ payload }) => {
+                    const item = payload as CategoryBreakdownItem | undefined
+                    return item ? `${item.category} ${item.percentage}%` : ''
+                  }}
                   outerRadius={80}
                   fill="#8884d8"
                   dataKey="sales"
                 >
-                  {analytics.categoryBreakdown.map((entry: any, index: number) => (
+                  {analytics.categoryBreakdown.map((entry, index: number) => (
                     <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                   ))}
                 </Pie>

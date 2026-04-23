@@ -135,19 +135,19 @@ export const marketplaceHandlers = [
 
   // Create patient order
   http.post('/api/marketplace/orders', async ({ request }) => {
-    const body = await request.json()
+    const body = await request.json() as Record<string, unknown>
 
     const mockOrder = {
       id: String(Date.now()),
       patientId: 'patient-1',
-      pharmacyId: body.pharmacyId,
-      pharmacyName: body.pharmacyName,
-      items: body.items,
-      deliveryMethod: body.deliveryMethod,
-      deliveryAddress: body.deliveryAddress,
-      prescriptionUploaded: !!body.prescriptionFile,
-      total: body.total,
-      deliveryFee: body.deliveryFee,
+      pharmacyId: String(body.pharmacyId ?? ''),
+      pharmacyName: String(body.pharmacyName ?? ''),
+      items: Array.isArray(body.items) ? body.items : [],
+      deliveryMethod: String(body.deliveryMethod ?? 'pickup'),
+      deliveryAddress: body.deliveryAddress ?? null,
+      prescriptionUploaded: Boolean(body.prescriptionUploaded),
+      total: Number(body.total ?? 0),
+      deliveryFee: Number(body.deliveryFee ?? 0),
       status: 'confirmed',
       estimatedDelivery: body.deliveryMethod === 'delivery' ? '45-60 minutes' : 'Ready for pickup in 30 minutes',
       createdAt: new Date().toISOString(),

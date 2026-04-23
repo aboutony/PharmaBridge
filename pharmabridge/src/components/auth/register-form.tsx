@@ -2,7 +2,7 @@
 
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useTranslations } from 'next-intl'
+import { useLocale, useTranslations } from '@/lib/i18n'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
@@ -15,6 +15,7 @@ import { useAuthStore } from '@/stores/auth'
 
 export function RegisterForm() {
   const t = useTranslations('auth')
+  const locale = useLocale()
   const router = useRouter()
   const { register } = useAuthStore()
   const [isLoading, setIsLoading] = useState(false)
@@ -37,7 +38,7 @@ export function RegisterForm() {
     try {
       await register(data)
       // Redirect to login or dashboard
-      router.push('/ar/auth/login?message=Registration successful')
+      router.push(`/${locale}/auth/login?message=Registration successful`)
     } catch (error) {
       console.error('Registration failed:', error)
     } finally {

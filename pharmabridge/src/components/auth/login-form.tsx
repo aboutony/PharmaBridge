@@ -2,7 +2,7 @@
 
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useTranslations } from 'next-intl'
+import { useLocale, useTranslations } from '@/lib/i18n'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
@@ -15,6 +15,7 @@ import { useAuthStore } from '@/stores/auth'
 
 export function LoginForm() {
   const t = useTranslations('auth')
+  const locale = useLocale()
   const router = useRouter()
   const { login } = useAuthStore()
   const [isLoading, setIsLoading] = useState(false)
@@ -33,7 +34,7 @@ export function LoginForm() {
     try {
       await login(data.email, data.password, data.rememberMe || false)
       // Redirect based on user type or to dashboard
-      router.push('/ar/pharmacy/dashboard')
+      router.push(`/${locale}/pharmacy/dashboard`)
     } catch (error) {
       console.error('Login failed:', error)
     } finally {

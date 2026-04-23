@@ -2,7 +2,7 @@
 
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useTranslations } from 'next-intl'
+import { useTranslations } from '@/lib/i18n'
 import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -22,7 +22,7 @@ export function ResetPasswordForm() {
     },
   })
 
-  const onSubmit = async (data: ResetPasswordFormData) => {
+  const onSubmit = async (_data: ResetPasswordFormData) => {
     setIsLoading(true)
     try {
       // Mock API call
@@ -41,7 +41,7 @@ export function ResetPasswordForm() {
         <CardHeader>
           <CardTitle>Check your email</CardTitle>
           <CardDescription>
-            We've sent password reset instructions to your email address.
+            We have sent password reset instructions to your email address.
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -65,7 +65,7 @@ export function ResetPasswordForm() {
       <CardHeader>
         <CardTitle>{t('resetPassword')}</CardTitle>
         <CardDescription>
-          Enter your email address and we'll send you a link to reset your password.
+          Enter your email address and we will send you a link to reset your password.
         </CardDescription>
       </CardHeader>
       <CardContent>

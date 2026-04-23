@@ -1,5 +1,5 @@
 import { http, HttpResponse } from 'msw'
-import { mockData } from './mockData'
+import { mockData } from '../data/mockData'
 
 // Pharmacy endpoints
 export const pharmacyHandlers = [
@@ -14,8 +14,13 @@ export const pharmacyHandlers = [
   }),
 
   http.post('/api/pharmacies', async ({ request }) => {
-    const body = await request.json()
-    const newPharmacy = { id: String(mockData.pharmacies.length + 1), ...body }
+    const body = await request.json() as Record<string, unknown>
+    const newPharmacy: typeof mockData.pharmacies[number] = {
+      id: String(mockData.pharmacies.length + 1),
+      name: String(body.name ?? 'New Pharmacy'),
+      location: String(body.location ?? 'Unknown'),
+      inventoryCount: Number(body.inventoryCount ?? 0),
+    }
     mockData.pharmacies.push(newPharmacy)
     return HttpResponse.json(newPharmacy, { status: 201 })
   })
@@ -70,11 +75,13 @@ export const orderHandlers = [
   }),
 
   http.post('/api/orders', async ({ request }) => {
-    const body = await request.json()
-    const newOrder = {
+    const body = await request.json() as Record<string, unknown>
+    const newOrder: typeof mockData.orders[number] = {
       id: String(mockData.orders.length + 1),
       status: 'pending',
-      ...body
+      pharmacyId: String(body.pharmacyId ?? ''),
+      distributorId: String(body.distributorId ?? ''),
+      total: Number(body.total ?? 0),
     }
     mockData.orders.push(newOrder)
     return HttpResponse.json(newOrder, { status: 201 })
