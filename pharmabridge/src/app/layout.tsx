@@ -1,16 +1,14 @@
 import type { Metadata } from 'next'
-import { getTranslations } from 'next-intl/server'
 
-export async function generateMetadata() {
-  const t = await getTranslations({ locale: 'ar', namespace: 'common' })
-
-  return {
-    title: 'PharmaBridge',
-    description: t('loading'),
-  }
+export const metadata: Metadata = {
+  title: 'PharmaBridge',
+  description: 'Unified Pharmaceutical Ecosystem Platform',
 }
 
-export default function RootRedirect() {
-  // This component should not render - the redirect happens in the page component
-  return null
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  return children
 }
