@@ -1,11 +1,9 @@
-import { redirect } from 'next/navigation'
+import { DrugAvailabilitySearch } from '@/components/marketplace/drug-search'
 
-export default async function LocaleHome({
-  params,
-}: {
-  params: Promise<{ locale: string }>
-}) {
-  const { locale } = await params
-
-  redirect(`/${locale}/marketplace`)
+export default function LocaleHome() {
+  return (
+    <div className="space-y-6">
+      <DrugAvailabilitySearch />
+    </div>
+  )
 }

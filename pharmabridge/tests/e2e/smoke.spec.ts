@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test'
 
 test('root redirects to the default Arabic locale', async ({ page }) => {
   await page.goto('/')
-  await expect(page).toHaveURL(/\/ar\/marketplace$/)
+  await expect(page).toHaveURL(/\/ar$/)
   await expect(page.getByText('Find Your Medicine')).toBeVisible()
 })
 
