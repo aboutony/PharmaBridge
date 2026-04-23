@@ -4,7 +4,7 @@ import { useEffect } from 'react'
 export function useMSW() {
   useEffect(() => {
     if (process.env.NODE_ENV === 'development' && typeof window !== 'undefined') {
-      import('../mocks/browser').then(({ worker }) => {
+      import('./mocks/browser').then(({ worker }) => {
         worker.start({
           onUnhandledRequest: 'bypass'
         })

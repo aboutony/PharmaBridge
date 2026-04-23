@@ -43,7 +43,9 @@ export default async function LocaleLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <QueryProvider>
+            {children}
+          </QueryProvider>
         </ThemeProviderWrapper>
       </body>
     </html>
