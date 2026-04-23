@@ -34,9 +34,8 @@ export default async function LocaleLayout({
 }) {
   const { locale } = await params
 
-  // Providing all messages to the client
-  // side is the easiest way to get started
-  const messages = await getMessages({locale})
+  // Messages are provided by the i18n.ts config file
+  // No need to call getMessages here
 
   return (
     <html
@@ -51,7 +50,7 @@ export default async function LocaleLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <NextIntlClientProvider messages={messages}>
+          <NextIntlClientProvider>
             {children}
           </NextIntlClientProvider>
         </ThemeProviderWrapper>
