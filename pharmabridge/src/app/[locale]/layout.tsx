@@ -1,8 +1,5 @@
 import type { Metadata } from 'next'
-import { getTranslations } from 'next-intl/server'
 import { Geist, Geist_Mono } from 'next/font/google'
-import { NextIntlClientProvider } from 'next-intl'
-import { getMessages } from 'next-intl/server'
 import { ThemeProviderWrapper } from '@/components/ui/theme-provider'
 
 const geistSans = Geist({
@@ -17,11 +14,10 @@ const geistMono = Geist_Mono({
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
-  const t = await getTranslations({ locale, namespace: 'common' })
 
   return {
     title: 'PharmaBridge',
-    description: t('loading'),
+    description: 'Unified Pharmaceutical Ecosystem Platform',
   }
 }
 
@@ -33,9 +29,6 @@ export default async function LocaleLayout({
   params: Promise<{ locale: string }>
 }) {
   const { locale } = await params
-
-  // Messages are provided by the i18n.ts config file
-  // No need to call getMessages here
 
   return (
     <html
@@ -50,9 +43,7 @@ export default async function LocaleLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <NextIntlClientProvider>
-            {children}
-          </NextIntlClientProvider>
+          {children}
         </ThemeProviderWrapper>
       </body>
     </html>
