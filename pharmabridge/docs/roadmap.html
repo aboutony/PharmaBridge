@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PharmaBridge Frontend Development Roadmap</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        h1, h2 { color: #2471A3; }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        .not-started { color: #C0392B; }
+        .in-progress { color: #D4771A; }
+        .completed { color: #1E8449; }
+    </style>
+</head>
+<body>
+    <h1>PharmaBridge Frontend Development Roadmap</h1>
+    <h2>Overview</h2>
+    <p>This roadmap outlines the phased development of the PharmaBridge Syria frontend based on the Frontend Technical Specification v1.0. Development follows a frontend-first approach with MSW mocking, ensuring full light/dark mode, Arabic RTL primary, English secondary, and responsive design across desktop/tablet/mobile.</p>
+
+    <h2>Phases and Subphases</h2>
+
+    <h3>Phase FE-1: Project Setup and Core Architecture</h3>
+    <p>Initialize the Next.js project with approved technology stack and establish project structure.</p>
+    <ul>
+        <li>FE-1.1: Initialize Next.js 14+ with App Router and TypeScript</li>
+        <li>FE-1.2: Configure Tailwind CSS 3+ and shadcn/ui component library</li>
+        <li>FE-1.3: Set up project folder structure per specification</li>
+        <li>FE-1.4: Install and configure all approved dependencies (Zustand, TanStack Query, React Hook Form, etc.)</li>
+        <li>FE-1.5: Configure ESLint, Prettier, Husky, and lint-staged</li>
+        <li>FE-1.6: Set up Vercel project and GitHub Actions CI/CD pipeline</li>
+    </ul>
+
+    <h3>Phase FE-2: Design System and Theming</h3>
+    <p>Implement design tokens, light/dark mode, and theme management.</p>
+    <ul>
+        <li>FE-2.1: Define CSS custom properties for design tokens (colors, surfaces, text)</li>
+        <li>FE-2.2: Configure Tailwind to consume design tokens</li>
+        <li>FE-2.3: Implement next-themes for system-aware light/dark switching</li>
+        <li>FE-2.4: Create ThemeToggle component</li>
+        <li>FE-2.5: Build base shadcn/ui components with dark mode support</li>
+        <li>FE-2.6: Ensure all components pass light/dark mode QA</li>
+    </ul>
+
+    <h3>Phase FE-3: Internationalization and RTL/LTR</h3>
+    <p>Set up bilingual support with Arabic RTL primary.</p>
+    <ul>
+        <li>FE-3.1: Configure next-intl middleware for locale routing</li>
+        <li>FE-3.2: Create translation files (ar.json and en.json) with all strings</li>
+        <li>FE-3.3: Implement RTL/LTR CSS rules and logical properties</li>
+        <li>FE-3.4: Build LanguageToggle component</li>
+        <li>FE-3.5: Test all components in both Arabic RTL and English LTR</li>
+        <li>FE-3.6: Implement directional icons and RTL-specific adjustments</li>
+    </ul>
+
+    <h3>Phase FE-4: Responsive Design System</h3>
+    <p>Establish breakpoint definitions and layout patterns.</p>
+    <ul>
+        <li>FE-4.1: Configure Tailwind breakpoints (mobile: 320-767px, tablet: 768-1279px, desktop: 1280px+)</li>
+        <li>FE-4.2: Build layout templates (sidebar, auth, public)</li>
+        <li>FE-4.3: Implement responsive navigation (bottom nav on mobile, sidebar on tablet/desktop)</li>
+        <li>FE-4.4: Create ResponsiveTable component for data tables</li>
+        <li>FE-4.5: Ensure touch targets and spacing meet WCAG guidelines</li>
+        <li>FE-4.6: Test all breakpoints and orientations</li>
+    </ul>
+
+    <h3>Phase FE-5: MSW and Mock Data Setup</h3>
+    <p>Implement frontend-first mocking with MSW.</p>
+    <ul>
+        <li>FE-5.1: Configure MSW for browser and server environments</li>
+        <li>FE-5.2: Create mock data fixtures for all modules</li>
+        <li>FE-5.3: Build MSW handlers for all API endpoints</li>
+        <li>FE-5.4: Integrate MSW with TanStack Query hooks</li>
+        <li>FE-5.5: Set up environment-specific MSW activation (dev/demo only)</li>
+    </ul>
+
+    <h3>Phase FE-6: Core Layouts and Navigation</h3>
+    <p>Build shared layouts and navigation components.</p>
+    <ul>
+        <li>FE-6.1: Create root layout with theme and locale providers</li>
+        <li>FE-6.2: Build navigation components (Sidebar, Header, BottomNav)</li>
+        <li>FE-6.3: Implement portal route groups ([locale]/(pharmacy), etc.)</li>
+        <li>FE-6.4: Create layout templates for each portal</li>
+        <li>FE-6.5: Add breadcrumb and back navigation</li>
+        <li>FE-6.6: Test navigation across all breakpoints and themes</li>
+    </ul>
+
+    <h3>Phase FE-7: Authentication Module</h3>
+    <p>Implement login, registration, and user management.</p>
+    <ul>
+        <li>FE-7.1: Build auth forms (login, register, reset password)</li>
+        <li>FE-7.2: Integrate React Hook Form with Zod validation</li>
+        <li>FE-7.3: Create auth layout and routing</li>
+        <li>FE-7.4: Implement MSW auth handlers</li>
+        <li>FE-7.5: Add auth state management with Zustand</li>
+        <li>FE-7.6: Test auth flows in both languages and themes</li>
+    </ul>
+
+    <h3>Phase FE-8: PIMS Module - Pharmacy Inventory Management</h3>
+    <p>Develop core pharmacy inventory functionality.</p>
+    <ul>
+        <li>FE-8.1: Build inventory dashboard with key metrics</li>
+        <li>FE-8.2: Implement drug catalog with barcode scanning</li>
+        <li>FE-8.3: Create stock level tracking and alerts</li>
+        <li>FE-8.4: Add expiry date management and notifications</li>
+        <li>FE-8.5: Build inventory CRUD operations</li>
+        <li>FE-8.6: Ensure offline functionality with IndexedDB</li>
+    </ul>
+
+    <h3>Phase FE-9: DistributorLink Module - B2B Connectivity</h3>
+    <p>Implement distributor search and ordering.</p>
+    <ul>
+        <li>FE-9.1: Build distributor search interface</li>
+        <li>FE-9.2: Create live inventory visibility</li>
+        <li>FE-9.3: Implement order placement and tracking</li>
+        <li>FE-9.4: Add order history and management</li>
+        <li>FE-9.5: Build credit and payment tracking</li>
+        <li>FE-9.6: Test B2B flows across all breakpoints</li>
+    </ul>
+
+    <h3>Phase FE-10: PharmaMarket Module - B2C Marketplace</h3>
+    <p>Develop patient-facing marketplace features.</p>
+    <ul>
+        <li>FE-10.1: Build drug availability search</li>
+        <li>FE-10.2: Create pharmacy storefronts</li>
+        <li>FE-10.3: Implement order placement and pickup/delivery options</li>
+        <li>FE-10.4: Add prescription upload functionality</li>
+        <li>FE-10.5: Build patient dashboard and order history</li>
+        <li>FE-10.6: Integrate with pharmacy inventory</li>
+    </ul>
+
+    <h3>Phase FE-11: BridgeIntel Module - Analytics & BI</h3>
+    <p>Add business intelligence dashboards.</p>
+    <ul>
+        <li>FE-11.1: Build pharmacy-level analytics (sales, turnover)</li>
+        <li>FE-11.2: Create distributor analytics</li>
+        <li>FE-11.3: Implement charts with Recharts</li>
+        <li>FE-11.4: Add export functionality</li>
+        <li>FE-11.5: Ensure responsive chart rendering</li>
+        <li>FE-11.6: Test analytics in dark mode and RTL</li>
+    </ul>
+
+    <h3>Phase FE-12: Offline Mode and PIMS Integration</h3>
+    <p>Enhance offline capabilities.</p>
+    <ul>
+        <li>FE-12.1: Implement IndexedDB layer with idb</li>
+        <li>FE-12.2: Build sync queue and conflict resolution</li>
+        <li>FE-12.3: Add connectivity detection</li>
+        <li>FE-12.4: Create offline status indicators</li>
+        <li>FE-12.5: Test offline flows comprehensively</li>
+    </ul>
+
+    <h3>Phase FE-13: Testing, Storybook, and QA</h3>
+    <p>Establish testing and component documentation.</p>
+    <ul>
+        <li>FE-13.1: Set up Vitest and React Testing Library</li>
+        <li>FE-13.2: Configure Storybook with theme and RTL variants</li>
+        <li>FE-13.3: Create stories for all components</li>
+        <li>FE-13.4: Implement Playwright E2E tests</li>
+        <li>FE-13.5: Run pre-delivery checklist on all features</li>
+        <li>FE-13.6: Performance testing and optimization</li>
+    </ul>
+
+    <h3>Phase FE-14: Environment Configuration and Deployment</h3>
+    <p>Set up demo and production environments.</p>
+    <ul>
+        <li>FE-14.1: Configure environment variables</li>
+        <li>FE-14.2: Set up Vercel projects (demo and production)</li>
+        <li>FE-14.3: Implement demo banner and seeded data</li>
+        <li>FE-14.4: Configure GitHub Actions for automated deployment</li>
+        <li>FE-14.5: Set up preview deployments for branches</li>
+        <li>FE-14.6: Test environment switching</li>
+    </ul>
+
+    <h3>Phase FE-15: Accessibility and Performance Optimization</h3>
+    <p>Final polish and compliance.</p>
+    <ul>
+        <li>FE-15.1: Implement WCAG 2.1 AA accessibility requirements</li>
+        <li>FE-15.2: Optimize bundle size (&lt;200KB gzipped)</li>
+        <li>FE-15.3: Ensure LCP &lt;2.5s, CLS &lt;0.1 on mobile</li>
+        <li>FE-15.4: Add ARIA labels and keyboard navigation</li>
+        <li>FE-15.5: Final RTL/LTR and light/dark QA</li>
+        <li>FE-15.6: User acceptance testing and sign-off</li>
+    </ul>
+
+    <h2>Phase Tracking Table</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Phase Code</th>
+                <th>Description</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>FE-1</td><td>Project Setup and Core Architecture</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-1.1</td><td>Initialize Next.js 14+ with App Router and TypeScript</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-1.2</td><td>Configure Tailwind CSS 3+ and shadcn/ui component library</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-1.3</td><td>Set up project folder structure per specification</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-1.4</td><td>Install and configure all approved dependencies</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-1.5</td><td>Configure ESLint, Prettier, Husky, and lint-staged</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-1.6</td><td>Set up Vercel project and GitHub Actions CI/CD pipeline</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-2</td><td>Design System and Theming</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-2.1</td><td>Define CSS custom properties for design tokens</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-2.2</td><td>Configure Tailwind to consume design tokens</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-2.3</td><td>Implement next-themes for system-aware light/dark switching</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-2.4</td><td>Create ThemeToggle component</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-2.5</td><td>Build base shadcn/ui components with dark mode support</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-2.6</td><td>Ensure all components pass light/dark mode QA</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-3</td><td>Internationalization and RTL/LTR</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-3.1</td><td>Configure next-intl middleware for locale routing</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-3.2</td><td>Create translation files (ar.json and en.json) with all strings</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-3.3</td><td>Implement RTL/LTR CSS rules and logical properties</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-3.4</td><td>Build LanguageToggle component</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-3.5</td><td>Test all components in both Arabic RTL and English LTR</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-3.6</td><td>Implement directional icons and RTL-specific adjustments</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-4</td><td>Responsive Design System</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-4.1</td><td>Configure Tailwind breakpoints</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-4.2</td><td>Build layout templates</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-4.3</td><td>Implement responsive navigation</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-4.4</td><td>Create ResponsiveTable component</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-4.5</td><td>Ensure touch targets and spacing meet WCAG guidelines</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-4.6</td><td>Test all breakpoints and orientations</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-5</td><td>MSW and Mock Data Setup</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-5.1</td><td>Configure MSW for browser and server environments</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-5.2</td><td>Create mock data fixtures for all modules</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-5.3</td><td>Build MSW handlers for all API endpoints</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-5.4</td><td>Integrate MSW with TanStack Query hooks</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-5.5</td><td>Set up environment-specific MSW activation</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-6</td><td>Core Layouts and Navigation</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-6.1</td><td>Create root layout with theme and locale providers</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-6.2</td><td>Build navigation components</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-6.3</td><td>Implement portal route groups</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-6.4</td><td>Create layout templates for each portal</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-6.5</td><td>Add breadcrumb and back navigation</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-6.6</td><td>Test navigation across all breakpoints and themes</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-7</td><td>Authentication Module</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-7.1</td><td>Build auth forms</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-7.2</td><td>Integrate React Hook Form with Zod validation</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-7.3</td><td>Create auth layout and routing</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-7.4</td><td>Implement MSW auth handlers</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-7.5</td><td>Add auth state management with Zustand</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-7.6</td><td>Test auth flows in both languages and themes</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-8</td><td>PIMS Module - Pharmacy Inventory Management</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-8.1</td><td>Build inventory dashboard</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-8.2</td><td>Implement drug catalog with barcode scanning</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-8.3</td><td>Create stock level tracking and alerts</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-8.4</td><td>Add expiry date management</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-8.5</td><td>Build inventory CRUD operations</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-8.6</td><td>Ensure offline functionality</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-9</td><td>DistributorLink Module - B2B Connectivity</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-9.1</td><td>Build distributor search interface</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-9.2</td><td>Create live inventory visibility</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-9.3</td><td>Implement order placement and tracking</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-9.4</td><td>Add order history and management</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-9.5</td><td>Build credit and payment tracking</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-9.6</td><td>Test B2B flows across all breakpoints</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-10</td><td>PharmaMarket Module - B2C Marketplace</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-10.1</td><td>Build drug availability search</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-10.2</td><td>Create pharmacy storefronts</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-10.3</td><td>Implement order placement and pickup/delivery</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-10.4</td><td>Add prescription upload functionality</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-10.5</td><td>Build patient dashboard and order history</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-10.6</td><td>Integrate with pharmacy inventory</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-11</td><td>BridgeIntel Module - Analytics & BI</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-11.1</td><td>Build pharmacy-level analytics</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-11.2</td><td>Create distributor analytics</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-11.3</td><td>Implement charts with Recharts</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-11.4</td><td>Add export functionality</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-11.5</td><td>Ensure responsive chart rendering</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-11.6</td><td>Test analytics in dark mode and RTL</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-12</td><td>Offline Mode and PIMS Integration</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-12.1</td><td>Implement IndexedDB layer</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-12.2</td><td>Build sync queue and conflict resolution</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-12.3</td><td>Add connectivity detection</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-12.4</td><td>Create offline status indicators</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-12.5</td><td>Test offline flows comprehensively</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-13</td><td>Testing, Storybook, and QA</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-13.1</td><td>Set up Vitest and React Testing Library</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-13.2</td><td>Configure Storybook with theme and RTL variants</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-13.3</td><td>Create stories for all components</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-13.4</td><td>Implement Playwright E2E tests</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-13.5</td><td>Run pre-delivery checklist on all features</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-13.6</td><td>Performance testing and optimization</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-14</td><td>Environment Configuration and Deployment</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-14.1</td><td>Configure environment variables</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-14.2</td><td>Set up Vercel projects</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-14.3</td><td>Implement demo banner and seeded data</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-14.4</td><td>Configure GitHub Actions for automated deployment</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-14.5</td><td>Set up preview deployments for branches</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-14.6</td><td>Test environment switching</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-15</td><td>Accessibility and Performance Optimization</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-15.1</td><td>Implement WCAG 2.1 AA accessibility requirements</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-15.2</td><td>Optimize bundle size</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-15.3</td><td>Ensure LCP and CLS targets</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-15.4</td><td>Add ARIA labels and keyboard navigation</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-15.5</td><td>Final RTL/LTR and light/dark QA</td><td class="not-started">Not Started</td></tr>
+            <tr><td>FE-15.6</td><td>User acceptance testing and sign-off</td><td class="not-started">Not Started</td></tr>
+        </tbody>
+    </table>
+    <p>This roadmap will be updated at each milestone completion. Last updated: 2026-04-23</p>
+</body>
+</html>

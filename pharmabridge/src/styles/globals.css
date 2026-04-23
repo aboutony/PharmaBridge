@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Brand */
+    --color-primary: 22 71 163; /* #2471A3 - Blue */
+    --color-primary-dark: 26 60 94; /* #1A3C5E - Navy */
+    --color-accent: 20 143 119; /* #148F77 - Teal */
+    --color-success: 30 132 73; /* #1E8449 - Green */
+    --color-warning: 212 119 26; /* #D4771A - Orange */
+    --color-danger: 192 57 43; /* #C0392B - Red */
+
+    /* Light Mode Surfaces */
+    --color-bg: 255 255 255;
+    --color-bg-subtle: 245 247 250;
+    --color-bg-muted: 235 239 244;
+    --color-surface: 255 255 255;
+    --color-surface-raised: 250 251 253;
+    --color-border: 210 218 227;
+
+    /* Light Mode Text */
+    --color-text-primary: 44 62 80;
+    --color-text-secondary: 113 125 126;
+    --color-text-disabled: 174 182 188;
+  }
+
+  .dark {
+    /* Dark Mode Surfaces */
+    --color-bg: 15 20 30;
+    --color-bg-subtle: 22 30 44;
+    --color-bg-muted: 30 42 58;
+    --color-surface: 22 30 44;
+    --color-surface-raised: 30 42 58;
+    --color-border: 45 60 80;
+
+    /* Dark Mode Text */
+    --color-text-primary: 220 230 240;
+    --color-text-secondary: 140 155 170;
+    --color-text-disabled: 80 95 110;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-bg text-text-primary;
+  }
+}
