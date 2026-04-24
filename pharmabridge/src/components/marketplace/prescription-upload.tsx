@@ -38,7 +38,7 @@ export function PrescriptionUpload({
 
       return response.json()
     },
-    onSuccess: (data) => {
+    onSuccess: () => {
       setUploadStatus('success')
       onUpload(uploadedFile!)
     },

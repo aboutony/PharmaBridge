@@ -1,5 +1,3 @@
-import { cn } from "@/lib/utils"
-
 interface SidebarLayoutProps {
   children: React.ReactNode
   sidebar: React.ReactNode

@@ -1,6 +1,5 @@
 'use client'
 
-import { useTranslations } from '@/lib/i18n'
 import { ThemeToggle } from "@/components/ui/theme-toggle"
 import { LanguageToggle } from "@/components/ui/language-toggle"
 import { cn } from "@/lib/utils"
@@ -11,8 +10,6 @@ interface HeaderProps {
 }
 
 export function Header({ title, className }: HeaderProps) {
-  const t = useTranslations('navigation')
-
   return (
     <header className={cn("border-b border-border bg-surface px-4 py-3 tablet:px-6 desktop:px-8", className)}>
       <div className="flex items-center justify-between">

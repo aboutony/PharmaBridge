@@ -3,7 +3,6 @@
 import { SidebarNav } from "@/components/layout/sidebar-nav"
 import { BottomNav } from "@/components/layout/bottom-nav"
 import { Header } from "@/components/layout/header"
-import { cn } from "@/lib/utils"
 
 interface DistributorLayoutProps {
   children: React.ReactNode

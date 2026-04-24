@@ -160,9 +160,7 @@ export const distributorOperationsHandlers = [
   }),
 
   // Get pharmacy orders
-  http.get('/api/pharmacies/:id/orders', ({ params }) => {
-    const { id } = params
-
+  http.get('/api/pharmacies/:id/orders', () => {
     const mockOrders = [
       {
         id: '1',
@@ -195,10 +193,8 @@ export const distributorOperationsHandlers = [
 
   // Get credit information
   http.get('/api/pharmacies/:id/credit', ({ params }) => {
-    const { id } = params
-
     const mockCredit = {
-      pharmacyId: id,
+      pharmacyId: String(params.id ?? ''),
       creditLimit: 5000.00,
       availableCredit: 3200.00,
       usedCredit: 1800.00,
@@ -211,9 +207,7 @@ export const distributorOperationsHandlers = [
   }),
 
   // Get payment history
-  http.get('/api/pharmacies/:id/payments', ({ params }) => {
-    const { id } = params
-
+  http.get('/api/pharmacies/:id/payments', () => {
     const mockPayments = [
       {
         id: '1',

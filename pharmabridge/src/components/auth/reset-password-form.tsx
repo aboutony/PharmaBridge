@@ -22,7 +22,7 @@ export function ResetPasswordForm() {
     },
   })
 
-  const onSubmit = async (_data: ResetPasswordFormData) => {
+  const onSubmit = async () => {
     setIsLoading(true)
     try {
       // Mock API call

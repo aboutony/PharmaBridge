@@ -113,8 +113,7 @@ export const inventoryHandlers = [
     return HttpResponse.json(updatedItem)
   }),
 
-  http.delete('/api/inventory/:id', ({ params }) => {
-    const { id } = params
+  http.delete('/api/inventory/:id', () => {
     return HttpResponse.json({ message: 'Item deleted' })
   }),
 

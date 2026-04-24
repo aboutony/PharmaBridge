@@ -1,9 +1,10 @@
 import Link from 'next/link'
-import { ThemeToggle } from '@/components/ui/theme-toggle'
-import { LanguageToggle } from '@/components/ui/language-toggle'
-import { GlassPanel } from '@/components/platform/glass-panel'
-import { getExperienceCopy, type AppLocale } from '@/lib/platform-content'
 import { Package2 } from 'lucide-react'
+import { GlassPanel } from '@/components/platform/glass-panel'
+import { LanguageToggle } from '@/components/ui/language-toggle'
+import { ThemeToggle } from '@/components/ui/theme-toggle'
+import { isDemoEnvironment } from '@/lib/env'
+import { getExperienceCopy, type AppLocale } from '@/lib/platform-content'
 
 export function PlatformShell({
   locale,
@@ -13,6 +14,7 @@ export function PlatformShell({
   children: React.ReactNode
 }) {
   const copy = getExperienceCopy(locale)
+  const showDemoMode = isDemoEnvironment()
 
   return (
     <div className="relative min-h-screen overflow-x-hidden bg-[linear-gradient(135deg,#0A0F1E_0%,#0D1729_50%,#132236_100%)] text-white">
@@ -44,7 +46,14 @@ export function PlatformShell({
               <Package2 className="h-6 w-6 text-white" />
             </div>
             <div className="flex flex-col">
-              <span className="text-lg font-bold">{locale === 'ar' ? copy.brandArabic : copy.brandEnglish}</span>
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="text-lg font-bold">{locale === 'ar' ? copy.brandArabic : copy.brandEnglish}</span>
+                {showDemoMode && (
+                  <span className="rounded-full border border-[#148F77]/45 bg-[#148F77]/18 px-2.5 py-0.5 text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-[#8EF0D5]">
+                    {locale === 'ar' ? 'الوضع التجريبي' : 'DEMO MODE'}
+                  </span>
+                )}
+              </div>
               <span className="text-xs uppercase tracking-[0.24em] text-white/55">
                 {locale === 'ar' ? 'منصة دوائية موحدة' : 'Unified Pharma OS'}
               </span>

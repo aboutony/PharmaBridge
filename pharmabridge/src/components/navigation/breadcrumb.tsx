@@ -1,8 +1,7 @@
 'use client'
 
-import { useTranslations } from '@/lib/i18n'
-import { ChevronLeft, Home } from 'lucide-react'
-import { useRouter, usePathname } from 'next/navigation'
+import { ChevronLeft } from 'lucide-react'
+import { useRouter } from 'next/navigation'
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 

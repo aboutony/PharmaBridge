@@ -40,8 +40,10 @@ export const useAuthStore = create<AuthState>()(
       isLoading: false,
       error: null,
 
-      login: async (email: string, _password: string, _rememberMe: boolean) => {
+      login: async (email: string, password: string, rememberMe: boolean) => {
         set({ isLoading: true, error: null })
+        void password
+        void rememberMe
 
         try {
           // Mock API call

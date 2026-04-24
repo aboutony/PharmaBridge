@@ -180,9 +180,7 @@ export const marketplaceHandlers = [
   }),
 
   // Get patient orders
-  http.get('/api/marketplace/patients/:id/orders', ({ params }) => {
-    const { id } = params
-
+  http.get('/api/marketplace/patients/:id/orders', () => {
     const mockOrders = [
       {
         id: '1',
