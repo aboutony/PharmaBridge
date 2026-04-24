@@ -25,7 +25,7 @@ export function PlatformHome({ locale }: { locale: AppLocale }) {
         <div className="section-shell flex flex-col gap-8">
           <section className="grid min-h-[min(100vh,56rem)] gap-8 py-8 desktop:grid-cols-[1.1fr_0.9fr] desktop:items-center">
             <div className="space-y-6">
-              <div className="inline-flex items-center gap-2 rounded-full border border-white/12 bg-white/6 px-4 py-2 text-xs uppercase tracking-[0.24em] text-white/60">
+              <div className="inline-flex items-center gap-2 rounded-full border border-slate-200/80 bg-white/75 px-4 py-2 text-xs uppercase tracking-[0.24em] text-slate-600 dark:border-white/12 dark:bg-white/6 dark:text-white/60">
                 <Sparkles className="h-4 w-4" />
                 {copy.hero.eyebrow}
               </div>
@@ -49,7 +49,7 @@ export function PlatformHome({ locale }: { locale: AppLocale }) {
                     className={
                       index === 0
                         ? 'inline-flex items-center gap-2 rounded-2xl bg-[#148F77] px-6 py-4 text-sm font-semibold text-white shadow-[0_0_28px_rgba(20,143,119,0.32)] transition hover:scale-[1.01] hover:bg-[#19a387]'
-                        : 'inline-flex items-center gap-2 rounded-2xl border border-white/18 bg-white/8 px-6 py-4 text-sm font-semibold text-white transition hover:bg-white/12'
+                        : 'inline-flex items-center gap-2 rounded-2xl border border-slate-200/80 bg-white/80 px-6 py-4 text-sm font-semibold text-slate-800 transition hover:bg-white hover:text-slate-950 dark:border-white/18 dark:bg-white/8 dark:text-white dark:hover:bg-white/12'
                     }
                   >
                     {action.label}
@@ -61,7 +61,7 @@ export function PlatformHome({ locale }: { locale: AppLocale }) {
               <div className="grid gap-4 tablet:grid-cols-4">
                 {copy.hero.stats.map((stat) => (
                   <GlassPanel key={stat.label} level={1} className="p-5">
-                    <p className="text-3xl font-bold text-white">{stat.value}</p>
+                    <p className="text-3xl font-bold text-slate-950 dark:text-white">{stat.value}</p>
                     <p className="mt-2 text-sm leading-6 text-glass-secondary">{stat.label}</p>
                   </GlassPanel>
                 ))}
@@ -70,16 +70,16 @@ export function PlatformHome({ locale }: { locale: AppLocale }) {
 
             <div className="space-y-5">
               <GlassPanel level={2} tone="teal" className="overflow-hidden p-6">
-                <div className="flex items-center justify-between border-b border-white/10 pb-4">
+                <div className="flex items-center justify-between border-b border-slate-200/80 pb-4 dark:border-white/10">
                   <div>
-                    <p className="text-xs uppercase tracking-[0.22em] text-white/50">
+                    <p className="text-xs uppercase tracking-[0.22em] text-slate-500 dark:text-white/50">
                       {locale === 'ar' ? 'إدارة مخزون الصيدلية' : 'PIMS'}
                     </p>
-                    <p className="mt-1 text-xl font-bold text-white">
+                    <p className="mt-1 text-xl font-bold text-slate-950 dark:text-white">
                       {modules.pims.title}
                     </p>
                   </div>
-                  <Link href={`/${locale}/pharmacy/dashboard`} className="rounded-full bg-[#148F77]/18 px-3 py-1 text-xs font-semibold text-[#84f0db]">
+                    <Link href={`/${locale}/pharmacy/dashboard`} className="rounded-full bg-[#148F77]/18 px-3 py-1 text-xs font-semibold text-[#148F77] dark:text-[#84f0db]">
                     {locale === 'ar' ? 'افتح الوحدة' : 'Open module'}
                   </Link>
                 </div>
@@ -104,12 +104,12 @@ export function PlatformHome({ locale }: { locale: AppLocale }) {
                     <GlassPanel key={item.title} level={1} className="p-4">
                       <div className="flex items-center justify-between gap-3">
                         <div>
-                          <p className="font-semibold text-white">{item.title}</p>
+                          <p className="font-semibold text-slate-950 dark:text-white">{item.title}</p>
                           <p className="mt-1 text-xs text-glass-secondary">{item.stock}</p>
                         </div>
-                        <div className="rounded-2xl bg-white/8 px-3 py-2 text-lg font-bold text-white">{item.value}</div>
+                        <div className="rounded-2xl bg-white/75 px-3 py-2 text-lg font-bold text-slate-950 dark:bg-white/8 dark:text-white">{item.value}</div>
                       </div>
-                      <div className="mt-4 h-2 overflow-hidden rounded-full bg-white/10">
+                      <div className="mt-4 h-2 overflow-hidden rounded-full bg-slate-200/80 dark:bg-white/10">
                         <div
                           className={`h-full rounded-full ${
                             index === 0 ? 'bg-[#D4771A]' : index === 1 ? 'bg-[#1E8449]' : 'bg-[#C0392B]'
@@ -123,10 +123,10 @@ export function PlatformHome({ locale }: { locale: AppLocale }) {
               </GlassPanel>
 
               <GlassPanel level={1} tone="blue" className="p-5">
-                <p className="text-xs uppercase tracking-[0.22em] text-white/50">
+                <p className="text-xs uppercase tracking-[0.22em] text-slate-500 dark:text-white/50">
                   {locale === 'ar' ? 'ربط الموزعين' : 'DistributorLink'}
                 </p>
-                <p className="mt-2 text-lg font-semibold text-white">{modules.distributorLink.summary}</p>
+                <p className="mt-2 text-lg font-semibold text-slate-950 dark:text-white">{modules.distributorLink.summary}</p>
                 <div className="mt-4 grid gap-3">
                   {[
                     locale === 'ar'
@@ -136,13 +136,13 @@ export function PlatformHome({ locale }: { locale: AppLocale }) {
                       ? { name: 'الشام الطبية', meta: 'مخزون متوسط • 24 ساعة', price: '11,800 ل.س' }
                       : { name: 'AlSham Medical', meta: 'Limited stock • 24 hours', price: '11,800 SYP' },
                   ].map((offer) => (
-                    <Link key={offer.name} href={`/${locale}/distributor/dashboard`} className="rounded-2xl border border-white/10 bg-white/6 px-4 py-4 transition hover:border-white/24 hover:bg-white/10">
+                    <Link key={offer.name} href={`/${locale}/distributor/dashboard`} className="rounded-2xl border border-slate-200/80 bg-white/75 px-4 py-4 transition hover:border-slate-300 hover:bg-white dark:border-white/10 dark:bg-white/6 dark:hover:border-white/24 dark:hover:bg-white/10">
                       <div className="flex items-center justify-between gap-3">
                         <div>
-                          <p className="font-semibold text-white">{offer.name}</p>
+                          <p className="font-semibold text-slate-950 dark:text-white">{offer.name}</p>
                           <p className="mt-1 text-xs text-glass-secondary">{offer.meta}</p>
                         </div>
-                        <span className="text-sm font-semibold text-[#84f0db]">{offer.price}</span>
+                        <span className="text-sm font-semibold text-[#148F77] dark:text-[#84f0db]">{offer.price}</span>
                       </div>
                     </Link>
                   ))}
@@ -154,8 +154,8 @@ export function PlatformHome({ locale }: { locale: AppLocale }) {
           <section className="grid gap-4 desktop:grid-cols-4" id="reality">
             {copy.reality.items.map((item) => (
               <GlassPanel key={item.title} level={1} className="border border-[#C0392B]/30 bg-[#C0392B]/8 p-6">
-                <p className="text-lg font-semibold text-white">{item.title}</p>
-                <p className="mt-3 text-sm leading-7 text-white/70">{item.body}</p>
+                <p className="text-lg font-semibold text-slate-950 dark:text-white">{item.title}</p>
+                <p className="mt-3 text-sm leading-7 text-slate-600 dark:text-white/70">{item.body}</p>
               </GlassPanel>
             ))}
           </section>
@@ -175,15 +175,15 @@ export function PlatformHome({ locale }: { locale: AppLocale }) {
                     <GlassPanel level={1} tone={item.tone} interactive className="h-full p-6">
                       <div className="flex items-start justify-between gap-4">
                         <div className="space-y-3">
-                          <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/8">
-                            <Icon className="h-6 w-6 text-white" />
+                          <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/80 dark:bg-white/8">
+                            <Icon className="h-6 w-6 text-slate-950 dark:text-white" />
                           </div>
                           <div>
-                            <p className="text-xl font-semibold text-white">{item.name}</p>
+                            <p className="text-xl font-semibold text-slate-950 dark:text-white">{item.name}</p>
                             <p className="mt-3 text-sm leading-7 text-glass-secondary">{item.description}</p>
                           </div>
                         </div>
-                        <span className="rounded-full border border-white/12 px-3 py-1 text-[11px] uppercase tracking-[0.18em] text-white/50">
+                        <span className="rounded-full border border-slate-200/80 px-3 py-1 text-[11px] uppercase tracking-[0.18em] text-slate-500 dark:border-white/12 dark:text-white/50">
                           {item.phase}
                         </span>
                       </div>
@@ -204,10 +204,10 @@ export function PlatformHome({ locale }: { locale: AppLocale }) {
             <div className="grid gap-4 desktop:grid-cols-3">
               {copy.howItWorks.steps.map((step, index) => (
                 <GlassPanel key={step.title} level={1} className="p-6">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-full border border-white/16 bg-white/8 text-lg font-bold text-white">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full border border-slate-200/80 bg-white/75 text-lg font-bold text-slate-950 dark:border-white/16 dark:bg-white/8 dark:text-white">
                     {index + 1}
                   </div>
-                  <p className="mt-5 text-xl font-semibold text-white">{step.title}</p>
+                  <p className="mt-5 text-xl font-semibold text-slate-950 dark:text-white">{step.title}</p>
                   <p className="mt-3 text-sm leading-7 text-glass-secondary">{step.body}</p>
                 </GlassPanel>
               ))}
@@ -220,13 +220,13 @@ export function PlatformHome({ locale }: { locale: AppLocale }) {
                 <p className="text-sm uppercase tracking-[0.2em] text-glass-muted">
                   {locale === 'ar' ? 'للصيدليات' : 'For pharmacies'}
                 </p>
-                <h2 className="text-3xl font-bold text-white">
+                <h2 className="text-3xl font-bold text-slate-950 dark:text-white">
                   {locale === 'ar' ? 'لوحة تشغيل تربط المخزون بالتوريد والتحليل' : 'An operating board that ties stock to sourcing and insight'}
                 </h2>
                 <div className="grid gap-3">
                   {modules.pims.details.map((detail) => (
-                    <Link key={detail.title} href={detail.href ?? `/${locale}/pharmacy/dashboard`} className="rounded-2xl border border-white/10 bg-white/6 px-5 py-4 transition hover:bg-white/10">
-                      <p className="font-semibold text-white">{detail.title}</p>
+                    <Link key={detail.title} href={detail.href ?? `/${locale}/pharmacy/dashboard`} className="rounded-2xl border border-slate-200/80 bg-white/75 px-5 py-4 transition hover:bg-white dark:border-white/10 dark:bg-white/6 dark:hover:bg-white/10">
+                      <p className="font-semibold text-slate-950 dark:text-white">{detail.title}</p>
                       <p className="mt-2 text-sm leading-7 text-glass-secondary">{detail.body}</p>
                     </Link>
                   ))}
@@ -239,7 +239,7 @@ export function PlatformHome({ locale }: { locale: AppLocale }) {
               </p>
               <div className="mt-4 space-y-3">
                 {modules.pims.actions.map((action) => (
-                  <Link key={action.href} href={action.href} className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/6 px-4 py-4 text-sm font-semibold text-white transition hover:bg-white/10">
+                  <Link key={action.href} href={action.href} className="flex items-center justify-between rounded-2xl border border-slate-200/80 bg-white/75 px-4 py-4 text-sm font-semibold text-slate-800 transition hover:bg-white dark:border-white/10 dark:bg-white/6 dark:text-white dark:hover:bg-white/10">
                     {action.label}
                     <Arrow className="h-4 w-4" />
                   </Link>
@@ -255,8 +255,8 @@ export function PlatformHome({ locale }: { locale: AppLocale }) {
               </p>
               <div className="mt-4 space-y-3">
                 {modules.enablement.details.map((detail) => (
-                  <Link key={detail.title} href={detail.href ?? `/${locale}/distributor/enablement`} className="block rounded-2xl border border-white/10 bg-white/6 px-4 py-4 transition hover:bg-white/10">
-                    <p className="font-semibold text-white">{detail.title}</p>
+                    <Link key={detail.title} href={detail.href ?? `/${locale}/distributor/enablement`} className="block rounded-2xl border border-slate-200/80 bg-white/75 px-4 py-4 transition hover:bg-white dark:border-white/10 dark:bg-white/6 dark:hover:bg-white/10">
+                      <p className="font-semibold text-slate-950 dark:text-white">{detail.title}</p>
                     <p className="mt-2 text-sm leading-7 text-glass-secondary">{detail.body}</p>
                   </Link>
                 ))}
@@ -267,13 +267,13 @@ export function PlatformHome({ locale }: { locale: AppLocale }) {
                 <p className="text-sm uppercase tracking-[0.2em] text-glass-muted">
                   {locale === 'ar' ? 'للموزعين' : 'For distributors'}
                 </p>
-                <h2 className="text-3xl font-bold text-white">
+                <h2 className="text-3xl font-bold text-slate-950 dark:text-white">
                   {locale === 'ar' ? 'تجربة موحدة من عرض الكتالوج إلى تنفيذ الطلب' : 'One route from catalog exposure to fulfilled order'}
                 </h2>
                 <div className="grid gap-3">
                   {modules.distributorLink.details.map((detail) => (
-                    <Link key={detail.title} href={detail.href ?? `/${locale}/distributor/dashboard`} className="rounded-2xl border border-white/10 bg-white/6 px-5 py-4 transition hover:bg-white/10">
-                      <p className="font-semibold text-white">{detail.title}</p>
+                    <Link key={detail.title} href={detail.href ?? `/${locale}/distributor/dashboard`} className="rounded-2xl border border-slate-200/80 bg-white/75 px-5 py-4 transition hover:bg-white dark:border-white/10 dark:bg-white/6 dark:hover:bg-white/10">
+                      <p className="font-semibold text-slate-950 dark:text-white">{detail.title}</p>
                       <p className="mt-2 text-sm leading-7 text-glass-secondary">{detail.body}</p>
                     </Link>
                   ))}
@@ -285,8 +285,8 @@ export function PlatformHome({ locale }: { locale: AppLocale }) {
           <section id="intelligence" className="grid gap-4 tablet:grid-cols-2 desktop:grid-cols-4">
             {copy.trust.items.map((item, index) => (
               <GlassPanel key={item.title} level={1} className="p-6" tone={index === 0 ? 'blue' : index === 1 ? 'green' : index === 2 ? 'teal' : 'purple'}>
-                {index === 0 && <WifiOff className="h-5 w-5 text-white/70" />}
-                <p className="mt-3 text-lg font-semibold text-white">{item.title}</p>
+                {index === 0 && <WifiOff className="h-5 w-5 text-slate-500 dark:text-white/70" />}
+                <p className="mt-3 text-lg font-semibold text-slate-950 dark:text-white">{item.title}</p>
                 <p className="mt-3 text-sm leading-7 text-glass-secondary">{item.body}</p>
               </GlassPanel>
             ))}
@@ -296,14 +296,14 @@ export function PlatformHome({ locale }: { locale: AppLocale }) {
             {copy.socialProof.stats.map((stat) => (
               <GlassPanel key={stat.label} level={3} className="p-6">
                 <p className="text-sm uppercase tracking-[0.18em] text-glass-muted">{stat.label}</p>
-                <p className="mt-4 text-5xl font-extrabold text-white">{stat.value}</p>
+                <p className="mt-4 text-5xl font-extrabold text-slate-950 dark:text-white">{stat.value}</p>
               </GlassPanel>
             ))}
           </section>
 
           <section id="waitlist" className="py-6">
             <GlassPanel level={2} tone="teal" className="mx-auto max-w-3xl px-8 py-10 text-center">
-              <h2 className="text-4xl font-bold text-white">{copy.cta.title}</h2>
+              <h2 className="text-4xl font-bold text-slate-950 dark:text-white">{copy.cta.title}</h2>
               <p className="mt-4 text-base leading-8 text-glass-secondary">{copy.cta.body}</p>
               <div className="mt-8 flex flex-wrap justify-center gap-3">
                 {[copy.cta.primary, copy.cta.secondary].map((action, index) => (

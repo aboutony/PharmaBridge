@@ -167,7 +167,7 @@ export function getExperienceCopy(locale: AppLocale): ExperienceCopy {
       items: [
         { key: 'pims', name: pick(locale, 'إدارة مخزون الصيدلية', 'PIMS'), href: `/${locale}/pharmacy/dashboard`, tone: 'amber', phase: pick(locale, 'وحدة تشغيل', 'Operations core'), description: pick(locale, 'إدارة المخزون والتنبيهات والامتثال اليومي للصيدلية.', 'Inventory, alerts, and daily pharmacy operations.') },
         { key: 'distributor-link', name: pick(locale, 'ربط الموزعين', 'DistributorLink'), href: `/${locale}/distributor/dashboard`, tone: 'teal', phase: pick(locale, 'طبقة الربط التجاري', 'B2B layer'), description: pick(locale, 'عرض لحظي لمخزون الموزعين وأسعارهم وزمن التوريد.', 'Live distributor stock, pricing, and delivery visibility.') },
-        { key: 'pharma-market', name: pick(locale, 'سوق الدواء', 'PharmaMarket'), href: `/${locale}/marketplace`, tone: 'blue', phase: pick(locale, 'واجهة المرضى', 'Patient layer'), description: pick(locale, 'بحث دوائي، طلبات، ووصول المريض إلى صيدليات موثوقة.', 'Medicine discovery, ordering, and trusted pharmacy access.') },
+        { key: 'pharma-market', name: pick(locale, 'سوق الدواء', 'PharmaMarket'), href: `/${locale}/pharmamarket`, tone: 'blue', phase: pick(locale, 'واجهة المرضى', 'Patient layer'), description: pick(locale, 'بوابة تجارة دوائية للمريض تشمل الاستكشاف والشراء والوصفات والتنبيهات.', 'A consumer pharmacy portal for discovery, checkout, prescriptions, and alerts.') },
         { key: 'bridge-intel', name: pick(locale, 'جسر التحليلات', 'BridgeIntel'), href: `/${locale}/pharmacy/analytics`, tone: 'purple', phase: pick(locale, 'رؤى تنفيذية', 'Insight suite'), description: pick(locale, 'تحويل بيانات التشغيل إلى قرارات نمو وتسعير ومخزون.', 'Turning operations data into growth, pricing, and stock decisions.') },
         { key: 'pharmai', name: pick(locale, 'محرك الصيدلة الذكي', 'PharmAI'), href: `/${locale}/pharmai`, tone: 'green', phase: pick(locale, 'ذكاء تنبؤي', 'Predictive engine'), description: pick(locale, 'توقع الطلب، اقتراح الشراء، وإنذار المخاطر قبل وقوعها.', 'Demand forecasting, buy recommendations, and preemptive risk alerts.') },
         { key: 'enablement', name: pick(locale, 'تمكين الموزعين', 'Distributor Enablement'), href: `/${locale}/distributor/enablement`, tone: 'blue', phase: pick(locale, 'خطة انطلاق', 'Activation plan'), description: pick(locale, 'تشغيل الموزع الجديد بسرعة عبر بيانات وتجهيز ومسار تبني واضح.', 'Fast distributor onboarding with data prep, launch readiness, and adoption support.') },
@@ -196,7 +196,7 @@ export function getExperienceCopy(locale: AppLocale): ExperienceCopy {
         { label: pick(locale, 'ساعة تشغيل موفرة أسبوعيًا', 'Hours saved weekly'), value: '4,000+' },
         { label: pick(locale, 'مكالمات توريد يدوي', 'Manual sourcing calls'), value: pick(locale, 'صفر', 'Zero') },
         { label: pick(locale, 'نسبة تغطية الرحلة', 'Journey coverage'), value: '6/6' },
-        { label: pick(locale, 'جاهزية العرض', 'Demo readiness'), value: pick(locale, 'مكتملة', 'Ready') },
+        { label: pick(locale, 'جاهزية الإطلاق', 'Launch readiness'), value: pick(locale, 'مكتملة', 'Ready') },
       ],
     },
     cta: {
@@ -214,7 +214,7 @@ export function getExperienceCopy(locale: AppLocale): ExperienceCopy {
           links: [
             { label: pick(locale, 'إدارة مخزون الصيدلية', 'PIMS'), href: `/${locale}/pharmacy/dashboard` },
             { label: pick(locale, 'ربط الموزعين', 'DistributorLink'), href: `/${locale}/distributor/dashboard` },
-            { label: pick(locale, 'سوق الدواء', 'PharmaMarket'), href: `/${locale}/marketplace` },
+            { label: pick(locale, 'سوق الدواء', 'PharmaMarket'), href: `/${locale}/pharmamarket` },
           ],
         },
         {
@@ -281,7 +281,7 @@ export function getModuleOverview(locale: AppLocale) {
       ],
       details: [
         { title: pick(locale, 'رحلة النقص', 'Shortage journey'), body: pick(locale, 'كل صنف منخفض يربط مباشرة بمسار طلب أو مقارنة موردين.', 'Every low-stock item links directly into a sourcing and supplier comparison flow.'), href: `/${locale}/pharmacy/sourcing` },
-        { title: pick(locale, 'التكامل مع السوق', 'Marketplace integration'), body: pick(locale, 'توفر الصيدلية في السوق العام يتحدث مباشرة مع حالة المخزون.', 'Marketplace availability reflects pharmacy stock position directly.'), href: `/${locale}/marketplace` },
+        { title: pick(locale, 'التكامل مع السوق', 'Marketplace integration'), body: pick(locale, 'توفر الصيدلية في السوق العام يتحدث مباشرة مع حالة المخزون.', 'Marketplace availability reflects pharmacy stock position directly.'), href: `/${locale}/pharmacy/settings` },
         { title: pick(locale, 'الذكاء التنبؤي', 'Predictive intelligence'), body: pick(locale, 'التوصيات القادمة من محرك الصيدلة الذكي تغذي قرار الشراء الاستباقي.', 'Upcoming PharmAI recommendations feed proactive purchasing decisions.'), href: `/${locale}/pharmai` },
       ],
     },
@@ -305,7 +305,7 @@ export function getModuleOverview(locale: AppLocale) {
       ],
     },
     market: {
-      title: pick(locale, 'سوق الدواء للمريض', 'PharmaMarket - The patient marketplace'),
+      title: pick(locale, 'سوق الدواء للمريض', 'PharmaMarket consumer portal'),
       summary: pick(locale, 'واجهة بحث وطلب تربط المرضى بصيدليات موثوقة مع ظهور واضح للتوفر والسعر والتنفيذ.', 'A searchable ordering surface that connects patients with trusted pharmacies and clear availability, pricing, and fulfillment.'),
       stats: [
         { title: pick(locale, 'نتائج مطابقة', 'Matched pharmacies'), value: '3', caption: pick(locale, 'من شبكة موثقة وقابلة للطلب', 'Returned from the connected verified network'), tone: 'blue' as const },
@@ -313,14 +313,14 @@ export function getModuleOverview(locale: AppLocale) {
         { title: pick(locale, 'طلبات المرضى', 'Patient orders'), value: '18', caption: pick(locale, 'مرئية للصيدلية والتحليلات', 'Visible to pharmacies and analytics'), tone: 'purple' as const },
       ],
       actions: [
-        { label: pick(locale, 'البحث عن دواء', 'Search medicine'), href: `/${locale}/marketplace`, variant: 'primary' as const },
-        { label: pick(locale, 'لوحة المريض', 'Open patient dashboard'), href: `/${locale}/patient/dashboard`, variant: 'secondary' as const },
-        { label: pick(locale, 'عرض الصيدلية', 'Open storefront'), href: `/${locale}/pharmacy/1`, variant: 'ghost' as const },
+        { label: pick(locale, 'افتح البوابة', 'Open portal'), href: `/${locale}/pharmamarket`, variant: 'primary' as const },
+        { label: pick(locale, 'المفضلة والسلة', 'Favorites and cart'), href: `/${locale}/pharmamarket/favorites`, variant: 'secondary' as const },
+        { label: pick(locale, 'الوصفات والتنبيهات', 'Prescriptions and alerts'), href: `/${locale}/pharmamarket/prescriptions`, variant: 'ghost' as const },
       ],
       details: [
         { title: pick(locale, 'توافر حي', 'Live availability'), body: pick(locale, 'المريض يرى ما تعلنه الصيدلية من مخزون وسعر في لحظة واحدة.', 'Patients see current stock and price exactly as the pharmacy publishes it.'), href: `/${locale}/pharmacy/1` },
         { title: pick(locale, 'الطلبات تغذي التحليلات', 'Orders feed intelligence'), body: pick(locale, 'كل طلب جديد يعود إلى جسر التحليلات ومحرك الصيدلة الذكي لتحسين القرار التالي.', 'Every new order flows back into BridgeIntel and PharmAI to improve the next decision.'), href: `/${locale}/pharmacy/analytics` },
-        { title: pick(locale, 'رفع الوصفة', 'Prescription upload'), body: pick(locale, 'رفع الوصفة جزء من رحلة تنفيذ حقيقية لا واجهة ميتة.', 'Prescription upload is part of a real fulfillment path, not a dead-end interaction.'), href: `/${locale}/marketplace` },
+        { title: pick(locale, 'رفع الوصفة', 'Prescription upload'), body: pick(locale, 'رفع الوصفة جزء من رحلة تنفيذ حقيقية لا واجهة ميتة.', 'Prescription upload is part of a real fulfillment path, not a dead-end interaction.'), href: `/${locale}/pharmamarket/prescriptions` },
       ],
     },
     intel: {
@@ -358,7 +358,7 @@ export function getModuleOverview(locale: AppLocale) {
       details: [
         { title: pick(locale, 'تنبؤ الطلب', 'Demand forecasting'), body: pick(locale, 'يتوقع الأصناف والكمية وفترة الذروة لكل صيدلية أو منطقة.', 'Forecasts the item, volume, and timing of demand by pharmacy or geography.'), href: `/${locale}/pharmacy/dashboard` },
         { title: pick(locale, 'اقتراحات شراء قابلة للتنفيذ', 'Actionable buy guidance'), body: pick(locale, 'التوصية لا تتوقف عند الرسم البياني بل تتحول إلى مسار شراء مباشر.', 'Recommendations move beyond charts and become direct sourcing actions.'), href: `/${locale}/pharmacy/sourcing` },
-        { title: pick(locale, 'قراءة شبكة المنصة', 'Network-wide intelligence'), body: pick(locale, 'محرك الصيدلة الذكي يقرأ الصيدلية والموزع والسوق معًا ضمن نموذج واحد.', 'PharmAI reads pharmacy, distributor, and marketplace signals together.'), href: `/${locale}/marketplace` },
+        { title: pick(locale, 'قراءة شبكة المنصة', 'Network-wide intelligence'), body: pick(locale, 'محرك الصيدلة الذكي يقرأ الصيدلية والموزع والسوق معًا ضمن نموذج واحد.', 'PharmAI reads pharmacy, distributor, and marketplace signals together.'), href: `/${locale}/pharmamarket` },
       ],
     },
     enablement: {

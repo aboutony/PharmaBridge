@@ -27,10 +27,10 @@ export default async function PharmacyInventory({
       <main id="main-content" className="section-shell px-4 py-10">
         <div className="space-y-6">
           <GlassPanel level={2} tone="amber" className="p-8">
-            <h1 className="text-4xl font-bold text-white">
+            <h1 className="text-4xl font-bold text-slate-950 dark:text-white">
               {currentLocale === 'ar' ? 'مركز المخزون' : 'Inventory command center'}
             </h1>
-            <p className="mt-3 text-base leading-8 text-white/65">
+            <p className="mt-3 text-base leading-8 text-slate-600 dark:text-white/65">
               {currentLocale === 'ar'
                 ? 'مساحة مخصصة لمراجعة الأصناف الحرجة، تحديث الأولويات، وربط كل قرار بمسار التوريد.'
                 : 'A focused surface for reviewing critical items, resetting priorities, and linking each decision into the sourcing journey.'}
@@ -38,14 +38,14 @@ export default async function PharmacyInventory({
           </GlassPanel>
 
           <GlassPanel level={1} className="overflow-hidden p-2">
-            <div className="grid grid-cols-4 gap-2 border-b border-white/10 px-4 py-3 text-sm font-semibold text-white/60">
+            <div className="grid grid-cols-4 gap-2 border-b border-slate-200/80 px-4 py-3 text-sm font-semibold text-slate-500 dark:border-white/10 dark:text-white/60">
               <span>{currentLocale === 'ar' ? 'الصنف' : 'Item'}</span>
               <span>{currentLocale === 'ar' ? 'الفئة' : 'Category'}</span>
               <span>{currentLocale === 'ar' ? 'المخزون' : 'Stock'}</span>
               <span>{currentLocale === 'ar' ? 'القرار' : 'Action'}</span>
             </div>
             {rows.map((row) => (
-              <div key={row.name} className="grid grid-cols-4 gap-2 px-4 py-4 text-sm text-white/80">
+              <div key={row.name} className="grid grid-cols-4 gap-2 px-4 py-4 text-sm text-slate-700 dark:text-white/80">
                 <span>{row.name}</span>
                 <span>{row.category}</span>
                 <span>{row.stock}</span>

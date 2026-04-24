@@ -26,10 +26,10 @@ export default async function PatientDashboardPage({
       <main id="main-content" className="section-shell px-4 py-10">
         <div className="space-y-6">
           <GlassPanel level={2} tone="blue" className="p-8">
-            <h1 className="text-4xl font-bold text-white">
+            <h1 className="text-4xl font-bold text-slate-950 dark:text-white">
               {currentLocale === 'ar' ? 'لوحة المريض' : 'Patient dashboard'}
             </h1>
-            <p className="mt-3 max-w-3xl text-base leading-8 text-white/65">
+            <p className="mt-3 max-w-3xl text-base leading-8 text-slate-600 dark:text-white/65">
               {currentLocale === 'ar'
                 ? 'جميع طلباتك، الصيدليات المفضلة، ومسارات التنفيذ في مساحة واحدة متصلة بالسوق والصيدلية.'
                 : 'All your orders, preferred pharmacies, and fulfillment journeys in one surface connected to the marketplace and pharmacy systems.'}
@@ -39,10 +39,10 @@ export default async function PatientDashboardPage({
           <div className="grid gap-4 tablet:grid-cols-2">
             {orders.map((order) => (
               <GlassPanel key={order.id} level={1} className="p-6">
-                <p className="text-sm uppercase tracking-[0.18em] text-white/50">{order.id}</p>
-                <p className="mt-3 text-xl font-semibold text-white">{order.pharmacy}</p>
-                <p className="mt-2 text-sm text-white/65">{order.status}</p>
-                <Link href={`/${currentLocale}/marketplace`} className="mt-5 inline-flex rounded-2xl border border-white/12 bg-white/8 px-4 py-3 text-sm font-semibold text-white hover:bg-white/12">
+                <p className="text-sm uppercase tracking-[0.18em] text-slate-500 dark:text-white/50">{order.id}</p>
+                <p className="mt-3 text-xl font-semibold text-slate-950 dark:text-white">{order.pharmacy}</p>
+                <p className="mt-2 text-sm text-slate-600 dark:text-white/65">{order.status}</p>
+                <Link href={`/${currentLocale}/pharmamarket`} className="mt-5 inline-flex rounded-2xl border border-slate-200/80 bg-white/80 px-4 py-3 text-sm font-semibold text-slate-700 hover:bg-white dark:border-white/12 dark:bg-white/8 dark:text-white dark:hover:bg-white/12">
                   {order.action}
                 </Link>
               </GlassPanel>
@@ -50,14 +50,14 @@ export default async function PatientDashboardPage({
           </div>
 
           <GlassPanel level={1} className="p-6">
-            <p className="text-lg font-semibold text-white">
+            <p className="text-lg font-semibold text-slate-950 dark:text-white">
               {currentLocale === 'ar' ? 'العودة إلى رحلة البحث والطلب' : 'Return to the discovery and ordering journey'}
             </p>
             <div className="mt-4 flex flex-wrap gap-3">
-              <Link href={`/${currentLocale}/marketplace`} className="rounded-2xl bg-[#148F77] px-5 py-3 text-sm font-semibold text-white">
+              <Link href={`/${currentLocale}/pharmamarket`} className="rounded-2xl bg-[#148F77] px-5 py-3 text-sm font-semibold text-white">
                 {currentLocale === 'ar' ? 'ابحث عن دواء' : 'Search medicine'}
               </Link>
-              <Link href={`/${currentLocale}/pharmacy/1`} className="rounded-2xl border border-white/12 bg-white/8 px-5 py-3 text-sm font-semibold text-white">
+              <Link href={`/${currentLocale}/pharmacy/1`} className="rounded-2xl border border-slate-200/80 bg-white/80 px-5 py-3 text-sm font-semibold text-slate-700 dark:border-white/12 dark:bg-white/8 dark:text-white">
                 {currentLocale === 'ar' ? 'افتح الصيدلية' : 'Open storefront'}
               </Link>
             </div>

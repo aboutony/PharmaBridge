@@ -18,8 +18,8 @@ export function LoginPanel({ locale }: { locale: AppLocale }) {
 
   return (
     <GlassPanel level={2} tone="teal" className="w-full max-w-xl p-8">
-      <h1 className="text-3xl font-bold text-white">{copy.auth.loginTitle}</h1>
-      <p className="mt-3 text-base leading-8 text-white/65">{copy.auth.loginBody}</p>
+      <h1 className="text-3xl font-bold text-slate-950 dark:text-white">{copy.auth.loginTitle}</h1>
+      <p className="mt-3 text-base leading-8 text-slate-600 dark:text-white/65">{copy.auth.loginBody}</p>
 
       <form
         className="mt-8 space-y-4"
@@ -30,10 +30,10 @@ export function LoginPanel({ locale }: { locale: AppLocale }) {
           router.push(`/${locale}/pharmacy/dashboard`)
         }}
       >
-        <label className="block text-sm font-semibold text-white/75">
+        <label className="block text-sm font-semibold text-slate-700 dark:text-white/75">
           {copy.auth.email}
           <input
-            className="mt-2 w-full rounded-2xl border border-white/12 bg-white/8 px-4 py-3 text-white outline-none transition placeholder:text-white/35 focus:border-[#60A8D4]"
+            className="mt-2 w-full rounded-2xl border border-slate-200/80 bg-white/85 px-4 py-3 text-slate-950 outline-none transition placeholder:text-slate-400 focus:border-[#60A8D4] dark:border-white/12 dark:bg-white/8 dark:text-white dark:placeholder:text-white/35"
             placeholder={locale === 'ar' ? 'name@domain.com' : 'name@domain.com'}
             type="email"
             value={email}
@@ -41,10 +41,10 @@ export function LoginPanel({ locale }: { locale: AppLocale }) {
             required
           />
         </label>
-        <label className="block text-sm font-semibold text-white/75">
+        <label className="block text-sm font-semibold text-slate-700 dark:text-white/75">
           {copy.auth.password}
           <input
-            className="mt-2 w-full rounded-2xl border border-white/12 bg-white/8 px-4 py-3 text-white outline-none transition placeholder:text-white/35 focus:border-[#60A8D4]"
+            className="mt-2 w-full rounded-2xl border border-slate-200/80 bg-white/85 px-4 py-3 text-slate-950 outline-none transition placeholder:text-slate-400 focus:border-[#60A8D4] dark:border-white/12 dark:bg-white/8 dark:text-white dark:placeholder:text-white/35"
             type="password"
             value={password}
             onChange={(event) => setPassword(event.target.value)}
@@ -52,11 +52,11 @@ export function LoginPanel({ locale }: { locale: AppLocale }) {
           />
         </label>
         <div className="flex items-center justify-between gap-4">
-          <label className="inline-flex items-center gap-2 text-sm text-white/70">
+          <label className="inline-flex items-center gap-2 text-sm text-slate-600 dark:text-white/70">
             <input type="checkbox" checked={rememberMe} onChange={(event) => setRememberMe(event.target.checked)} />
             {copy.auth.rememberMe}
           </label>
-          <Link href={`/${locale}/auth/reset-password`} className="text-sm font-semibold text-[#60A8D4] hover:text-white">
+          <Link href={`/${locale}/auth/reset-password`} className="text-sm font-semibold text-[#2471A3] hover:text-slate-950 dark:text-[#60A8D4] dark:hover:text-white">
             {copy.auth.forgotPassword}
           </Link>
         </div>
@@ -89,8 +89,8 @@ export function RegisterPanel({ locale }: { locale: AppLocale }) {
 
   return (
     <GlassPanel level={2} tone="blue" className="w-full max-w-2xl p-8">
-      <h1 className="text-3xl font-bold text-white">{copy.auth.registerTitle}</h1>
-      <p className="mt-3 text-base leading-8 text-white/65">{copy.auth.registerBody}</p>
+      <h1 className="text-3xl font-bold text-slate-950 dark:text-white">{copy.auth.registerTitle}</h1>
+      <p className="mt-3 text-base leading-8 text-slate-600 dark:text-white/65">{copy.auth.registerBody}</p>
 
       <form
         className="mt-8 grid gap-4 tablet:grid-cols-2"
@@ -113,10 +113,10 @@ export function RegisterPanel({ locale }: { locale: AppLocale }) {
           ['email', copy.auth.email],
           ['phone', copy.auth.phone],
         ] as const).map(([key, label]) => (
-          <label key={key} className="block text-sm font-semibold text-white/75">
+          <label key={key} className="block text-sm font-semibold text-slate-700 dark:text-white/75">
             {label}
             <input
-              className="mt-2 w-full rounded-2xl border border-white/12 bg-white/8 px-4 py-3 text-white outline-none transition placeholder:text-white/35 focus:border-[#60A8D4]"
+              className="mt-2 w-full rounded-2xl border border-slate-200/80 bg-white/85 px-4 py-3 text-slate-950 outline-none transition placeholder:text-slate-400 focus:border-[#60A8D4] dark:border-white/12 dark:bg-white/8 dark:text-white dark:placeholder:text-white/35"
               type={key === 'email' ? 'email' : 'text'}
               value={form[key]}
               onChange={(event) => setForm((current) => ({ ...current, [key]: event.target.value }))}
@@ -125,10 +125,10 @@ export function RegisterPanel({ locale }: { locale: AppLocale }) {
           </label>
         ))}
 
-        <label className="block text-sm font-semibold text-white/75">
+        <label className="block text-sm font-semibold text-slate-700 dark:text-white/75">
           {copy.auth.accountType}
           <select
-            className="mt-2 w-full rounded-2xl border border-white/12 bg-[#0f1726] px-4 py-3 text-white outline-none transition focus:border-[#60A8D4]"
+            className="mt-2 w-full rounded-2xl border border-slate-200/80 bg-white/85 px-4 py-3 text-slate-950 outline-none transition focus:border-[#60A8D4] dark:border-white/12 dark:bg-[#0f1726] dark:text-white"
             value={form.userType}
             onChange={(event) => setForm((current) => ({ ...current, userType: event.target.value as 'pharmacy' | 'distributor' | 'admin' }))}
           >
@@ -138,10 +138,10 @@ export function RegisterPanel({ locale }: { locale: AppLocale }) {
           </select>
         </label>
 
-        <label className="block text-sm font-semibold text-white/75">
+        <label className="block text-sm font-semibold text-slate-700 dark:text-white/75">
           {copy.auth.password}
           <input
-            className="mt-2 w-full rounded-2xl border border-white/12 bg-white/8 px-4 py-3 text-white outline-none transition focus:border-[#60A8D4]"
+            className="mt-2 w-full rounded-2xl border border-slate-200/80 bg-white/85 px-4 py-3 text-slate-950 outline-none transition focus:border-[#60A8D4] dark:border-white/12 dark:bg-white/8 dark:text-white"
             type="password"
             value={form.password}
             onChange={(event) => setForm((current) => ({ ...current, password: event.target.value }))}
@@ -149,10 +149,10 @@ export function RegisterPanel({ locale }: { locale: AppLocale }) {
           />
         </label>
 
-        <label className="block text-sm font-semibold text-white/75 tablet:col-span-2">
+        <label className="block text-sm font-semibold text-slate-700 dark:text-white/75 tablet:col-span-2">
           {copy.auth.confirmPassword}
           <input
-            className="mt-2 w-full rounded-2xl border border-white/12 bg-white/8 px-4 py-3 text-white outline-none transition focus:border-[#60A8D4]"
+            className="mt-2 w-full rounded-2xl border border-slate-200/80 bg-white/85 px-4 py-3 text-slate-950 outline-none transition focus:border-[#60A8D4] dark:border-white/12 dark:bg-white/8 dark:text-white"
             type="password"
             value={form.confirmPassword}
             onChange={(event) => setForm((current) => ({ ...current, confirmPassword: event.target.value }))}
@@ -179,8 +179,8 @@ export function ResetPanel({ locale }: { locale: AppLocale }) {
 
   return (
     <GlassPanel level={2} tone="purple" className="w-full max-w-xl p-8">
-      <h1 className="text-3xl font-bold text-white">{copy.auth.resetTitle}</h1>
-      <p className="mt-3 text-base leading-8 text-white/65">{copy.auth.resetBody}</p>
+      <h1 className="text-3xl font-bold text-slate-950 dark:text-white">{copy.auth.resetTitle}</h1>
+      <p className="mt-3 text-base leading-8 text-slate-600 dark:text-white/65">{copy.auth.resetBody}</p>
 
       <form
         className="mt-8 space-y-4"
@@ -189,10 +189,10 @@ export function ResetPanel({ locale }: { locale: AppLocale }) {
           router.push(`/${locale}/auth/login`)
         }}
       >
-        <label className="block text-sm font-semibold text-white/75">
+        <label className="block text-sm font-semibold text-slate-700 dark:text-white/75">
           {copy.auth.email}
           <input
-            className="mt-2 w-full rounded-2xl border border-white/12 bg-white/8 px-4 py-3 text-white outline-none transition placeholder:text-white/35 focus:border-[#60A8D4]"
+            className="mt-2 w-full rounded-2xl border border-slate-200/80 bg-white/85 px-4 py-3 text-slate-950 outline-none transition placeholder:text-slate-400 focus:border-[#60A8D4] dark:border-white/12 dark:bg-white/8 dark:text-white dark:placeholder:text-white/35"
             type="email"
             value={email}
             onChange={(event) => setEmail(event.target.value)}

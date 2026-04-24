@@ -17,10 +17,8 @@ test('english login flow reaches the pharmacy dashboard', async ({ page }) => {
 })
 
 test('marketplace page loads in production mode with mocked data enabled', async ({ page }) => {
-  await page.goto('/en/marketplace')
-  await expect(page.getByRole('heading', { name: /Find your medicine/i })).toBeVisible()
-
-  await page.getByPlaceholder('For example: Paracetamol or Amoxicillin').fill('Paracetamol')
-  await page.getByRole('button', { name: 'Search' }).click()
-  await expect(page.getByText('Pharmacy Al-Rashid')).toBeVisible()
+  await page.goto('/en/pharmamarket')
+  await expect(page.getByRole('heading', { name: /Search, compare, upload your prescription/i })).toBeVisible()
+  await expect(page.getByRole('link', { name: /Open catalog/i })).toBeVisible()
+  await expect(page.getByText('Verified pharmacies')).toBeVisible()
 })

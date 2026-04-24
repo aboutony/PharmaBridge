@@ -16,10 +16,10 @@ export default async function AdminDashboard({
       <main id="main-content" className="section-shell px-4 py-10">
         <div className="space-y-6">
           <GlassPanel level={2} tone="purple" className="p-8">
-            <h1 className="text-4xl font-bold text-white">
+            <h1 className="text-4xl font-bold text-slate-950 dark:text-white">
               {currentLocale === 'ar' ? 'لوحة الإدارة والتحكم' : 'Administration and control'}
             </h1>
-            <p className="mt-3 text-base leading-8 text-white/65">
+            <p className="mt-3 text-base leading-8 text-slate-600 dark:text-white/65">
               {currentLocale === 'ar'
                 ? 'مساحة متابعة جاهزية المنصة، تبني الوحدات، وتمكين الفرق والشركاء عبر المسارات المختلفة.'
                 : 'A control surface for platform readiness, module adoption, and cross-team enablement across the operating journey.'}
@@ -33,7 +33,7 @@ export default async function AdminDashboard({
             ].map((item) => (
               <Link key={item.title} href={item.href}>
                 <GlassPanel level={1} interactive className="p-6">
-                  <p className="text-lg font-semibold text-white">{item.title}</p>
+                  <p className="text-lg font-semibold text-slate-950 dark:text-white">{item.title}</p>
                 </GlassPanel>
               </Link>
             ))}

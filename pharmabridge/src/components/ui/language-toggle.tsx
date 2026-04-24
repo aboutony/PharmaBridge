@@ -20,7 +20,7 @@ export function LanguageToggle() {
       variant="ghost"
       onClick={switchLocale}
       aria-label={locale === 'ar' ? 'التبديل إلى الإنجليزية' : 'Switch to Arabic'}
-      className="rounded-2xl border border-white/10 bg-white/6 px-4 text-white/75 hover:bg-white/12 hover:text-white"
+      className="rounded-2xl border border-slate-200/80 bg-white/80 px-4 text-slate-700 hover:bg-white hover:text-slate-950 dark:border-white/10 dark:bg-white/6 dark:text-white/75 dark:hover:bg-white/12 dark:hover:text-white"
     >
       {locale === 'ar' ? 'الإنجليزية' : 'Arabic'}
     </Button>
