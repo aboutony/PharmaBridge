@@ -1,12 +1,20 @@
-'use client'
+import { LoginPanel } from '@/components/platform/auth-panels'
+import { PlatformShell } from '@/components/platform/platform-shell'
+import { isArabic } from '@/lib/platform-content'
 
-import { AuthLayout } from "@/components/layout/auth-layout"
-import { LoginForm } from "@/components/auth/login-form"
+export default async function LoginPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}) {
+  const { locale } = await params
+  const currentLocale = isArabic(locale) ? 'ar' : 'en'
 
-export default function LoginPage() {
   return (
-    <AuthLayout title="Welcome back">
-      <LoginForm />
-    </AuthLayout>
+    <PlatformShell locale={currentLocale}>
+      <main id="main-content" className="section-shell flex min-h-[calc(100vh-12rem)] items-center justify-center px-4 py-10">
+        <LoginPanel locale={currentLocale} />
+      </main>
+    </PlatformShell>
   )
 }

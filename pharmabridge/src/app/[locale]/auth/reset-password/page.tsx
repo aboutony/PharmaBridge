@@ -1,12 +1,20 @@
-'use client'
+import { ResetPanel } from '@/components/platform/auth-panels'
+import { PlatformShell } from '@/components/platform/platform-shell'
+import { isArabic } from '@/lib/platform-content'
 
-import { AuthLayout } from "@/components/layout/auth-layout"
-import { ResetPasswordForm } from "@/components/auth/reset-password-form"
+export default async function ResetPasswordPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}) {
+  const { locale } = await params
+  const currentLocale = isArabic(locale) ? 'ar' : 'en'
 
-export default function ResetPasswordPage() {
   return (
-    <AuthLayout title="Reset your password">
-      <ResetPasswordForm />
-    </AuthLayout>
+    <PlatformShell locale={currentLocale}>
+      <main id="main-content" className="section-shell flex min-h-[calc(100vh-12rem)] items-center justify-center px-4 py-10">
+        <ResetPanel locale={currentLocale} />
+      </main>
+    </PlatformShell>
   )
 }

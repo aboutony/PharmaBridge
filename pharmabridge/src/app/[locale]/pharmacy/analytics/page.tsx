@@ -1,9 +1,11 @@
-import { PharmacyAnalytics } from "@/components/analytics/pharmacy-analytics"
+import { ModulePage } from '@/components/platform/module-page'
+import { isArabic } from '@/lib/platform-content'
 
-export default function PharmacyAnalyticsPage() {
-  return (
-    <div className="container mx-auto px-4 py-8">
-      <PharmacyAnalytics pharmacyId="1" />
-    </div>
-  )
+export default async function PharmacyAnalyticsPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}) {
+  const { locale } = await params
+  return <ModulePage locale={isArabic(locale) ? 'ar' : 'en'} moduleKey="intel" />
 }

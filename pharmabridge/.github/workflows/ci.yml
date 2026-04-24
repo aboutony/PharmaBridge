@@ -27,8 +27,23 @@ jobs:
       - name: Lint
         run: npm run lint
 
+      - name: Unit tests
+        run: npm run test:unit
+
       - name: Build
         run: npm run build
 
+      - name: Storybook build
+        run: npm run build-storybook
+
+      - name: Bundle budget
+        run: npm run test:bundle
+
       - name: End-to-end smoke tests
         run: npm run test:e2e
+
+      - name: Accessibility checks
+        run: npm run test:a11y
+
+      - name: Performance checks
+        run: npm run test:perf

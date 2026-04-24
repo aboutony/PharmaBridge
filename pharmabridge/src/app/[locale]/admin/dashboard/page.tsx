@@ -1,58 +1,45 @@
-import { AdminLayout } from "@/components/layout/admin-layout"
+import Link from 'next/link'
+import { GlassPanel } from '@/components/platform/glass-panel'
+import { PlatformShell } from '@/components/platform/platform-shell'
+import { isArabic } from '@/lib/platform-content'
 
-export default function AdminDashboard() {
+export default async function AdminDashboard({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}) {
+  const { locale } = await params
+  const currentLocale = isArabic(locale) ? 'ar' : 'en'
+
   return (
-    <AdminLayout>
-      <div className="space-y-6">
-        <div className="grid gap-4 tablet:grid-cols-2 desktop:grid-cols-4">
-          <div className="bg-surface p-6 rounded-lg border border-border">
-            <h3 className="text-lg font-semibold mb-2">Total Pharmacies</h3>
-            <p className="text-2xl font-bold text-primary">2,150</p>
-            <p className="text-sm text-text-secondary">Active in platform</p>
-          </div>
-          <div className="bg-surface p-6 rounded-lg border border-border">
-            <h3 className="text-lg font-semibold mb-2">Distributors</h3>
-            <p className="text-2xl font-bold text-success">85</p>
-            <p className="text-sm text-text-secondary">Registered</p>
-          </div>
-          <div className="bg-surface p-6 rounded-lg border border-border">
-            <h3 className="text-lg font-semibold mb-2">Monthly Orders</h3>
-            <p className="text-2xl font-bold text-accent">15,420</p>
-            <p className="text-sm text-text-secondary">This month</p>
-          </div>
-          <div className="bg-surface p-6 rounded-lg border border-border">
-            <h3 className="text-lg font-semibold mb-2">Revenue</h3>
-            <p className="text-2xl font-bold text-warning">$285,000</p>
-            <p className="text-sm text-text-secondary">This month</p>
-          </div>
-        </div>
-        <div className="bg-surface p-6 rounded-lg border border-border">
-          <h3 className="text-lg font-semibold mb-4">System Overview</h3>
-          <div className="grid gap-4 tablet:grid-cols-2">
-            <div>
-              <h4 className="font-medium mb-2">Platform Health</h4>
-              <div className="space-y-1">
-                <div className="flex justify-between">
-                  <span>API Response Time</span>
-                  <span className="text-success">120ms</span>
-                </div>
-                <div className="flex justify-between">
-                  <span>System Uptime</span>
-                  <span className="text-success">99.9%</span>
-                </div>
-              </div>
-            </div>
-            <div>
-              <h4 className="font-medium mb-2">Recent Activity</h4>
-              <div className="space-y-1 text-sm">
-                <div>New pharmacy registered</div>
-                <div>New distributor onboarded</div>
-                <div>System maintenance completed</div>
-              </div>
-            </div>
+    <PlatformShell locale={currentLocale}>
+      <main id="main-content" className="section-shell px-4 py-10">
+        <div className="space-y-6">
+          <GlassPanel level={2} tone="purple" className="p-8">
+            <h1 className="text-4xl font-bold text-white">
+              {currentLocale === 'ar' ? 'لوحة الإدارة والتحكم' : 'Administration and control'}
+            </h1>
+            <p className="mt-3 text-base leading-8 text-white/65">
+              {currentLocale === 'ar'
+                ? 'مساحة متابعة جاهزية المنصة، تبني الوحدات، وتمكين الفرق والشركاء عبر المسارات المختلفة.'
+                : 'A control surface for platform readiness, module adoption, and cross-team enablement across the operating journey.'}
+            </p>
+          </GlassPanel>
+          <div className="grid gap-4 tablet:grid-cols-3">
+            {[
+              { title: currentLocale === 'ar' ? 'تحليلات جسر التحليلات' : 'BridgeIntel analytics', href: `/${currentLocale}/pharmacy/analytics` },
+              { title: currentLocale === 'ar' ? 'تمكين الموزعين' : 'Distributor enablement', href: `/${currentLocale}/distributor/enablement` },
+              { title: currentLocale === 'ar' ? 'محرك الصيدلة الذكي' : 'PharmAI engine', href: `/${currentLocale}/pharmai` },
+            ].map((item) => (
+              <Link key={item.title} href={item.href}>
+                <GlassPanel level={1} interactive className="p-6">
+                  <p className="text-lg font-semibold text-white">{item.title}</p>
+                </GlassPanel>
+              </Link>
+            ))}
           </div>
         </div>
-      </div>
-    </AdminLayout>
+      </main>
+    </PlatformShell>
   )
 }

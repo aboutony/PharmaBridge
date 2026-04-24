@@ -1,9 +1,11 @@
-import { DistributorAnalytics } from "@/components/analytics/distributor-analytics"
+import { ModulePage } from '@/components/platform/module-page'
+import { isArabic } from '@/lib/platform-content'
 
-export default function DistributorAnalyticsPage() {
-  return (
-    <div className="container mx-auto px-4 py-8">
-      <DistributorAnalytics distributorId="1" />
-    </div>
-  )
+export default async function DistributorAnalyticsPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}) {
+  const { locale } = await params
+  return <ModulePage locale={isArabic(locale) ? 'ar' : 'en'} moduleKey="intel" />
 }

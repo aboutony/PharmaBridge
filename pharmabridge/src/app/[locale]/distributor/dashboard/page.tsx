@@ -1,14 +1,11 @@
-import { DistributorLink } from "@/components/distributor/distributor-link"
+import { ModulePage } from '@/components/platform/module-page'
+import { isArabic } from '@/lib/platform-content'
 
-export default function DistributorDashboard() {
-  return (
-    <div className="space-y-6">
-      <div>
-        <h2 className="text-2xl font-bold">Dashboard</h2>
-        <p className="text-muted-foreground">Welcome to your distributor dashboard</p>
-      </div>
-
-      <DistributorLink />
-    </div>
-  )
+export default async function DistributorDashboard({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}) {
+  const { locale } = await params
+  return <ModulePage locale={isArabic(locale) ? 'ar' : 'en'} moduleKey="distributorLink" />
 }
